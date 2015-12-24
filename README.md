@@ -19,4 +19,4 @@ defaults for some known terminals.
 Many thanks to Thomas Dickey, Egmont Koblinger, and Gilles, for
 explanations (and code!) via
 [unix.stackexchange](http://unix.stackexchange.com/questions/245378/common-environment-variable-to-set-dark-or-light-terminal-background/245381#245381). Of
-course bugs, lacuna, in this code are mine.
+course bugs and lacuna, in this code are mine.
