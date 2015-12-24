@@ -3,9 +3,8 @@
 
 typeset -i success=0
 
-# Caller Sets is_dark_bg on return
 # On return, variable is_dark_bg is set
-# Wefollow Emacs logic (at least initially)
+# We follow Emacs logic (at least initially)
 set_default_bg() {
     if [[ -n $TERM ]] ; then
 	case $TERM in
@@ -32,7 +31,7 @@ is_dark_rgb() {
     fi
 }
 
-# Pass as parameters R G B values in hex
+# Consult (environment) variable COLORFGB
 # On return, variable is_dark_bg is set
 is_dark_colorfgbg() {
     case $COLORFGBG in
