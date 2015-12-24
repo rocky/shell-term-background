@@ -9,14 +9,14 @@ If are not in a shell then runnning the program and parse the output;
 output will start either "Dark background", "Light background" or
 "Can't decide".
 
-THe heuristics it uses is to try to query the background color using
+The heuristics it uses is to try to query the background color using
 an [xterm control sequence](https://www.talisman.org/~erlkonig/documents/xterm-color-queries/)
 
-Many, but not all, terminal support this query. So as a fallback we
+Many, but not all, terminals support this query. So as a fallback we
 query environment variable `COLORFGBG` and failing this we use some
 defaults for some known terminals.
 
 Many thanks to Thomas Dickey, Egmont Koblinger, and Gilles, for
 explanations (and code!) via
-[unix.stackexchange](ttp://unix.stackexchange.com/questions/245378/common-environment-variable-to-set-dark-or-light-terminal-background/245381#245381). Of
+[unix.stackexchange](http://unix.stackexchange.com/questions/245378/common-environment-variable-to-set-dark-or-light-terminal-background/245381#245381). Of
 course bugs, lacuna, in this code are mine.
