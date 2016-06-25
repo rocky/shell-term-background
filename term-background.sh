@@ -47,6 +47,24 @@ is_dark_colorfgbg() {
     esac
 }
 
+is_sourced() {
+    if [[ $0 == ${BASH_SOURCE[0]} ]] ; then
+	return 1
+    else
+	return 0
+    fi
+}
+
+# Exit if we are not source.
+# if sourced, then we just set exitrc
+# which was assumed to be declared outside
+exit_if_not_sourced() {
+    exitrc=${1:-0}
+    if ! is_sourced ; then
+	exit $exitrc
+    fi
+}
+
 # From:
 # http://unix.stackexchange.com/questions/245378/common-environment-variable-to-set-dark-or-light-terminal-background/245381#245381
 # and:
@@ -74,8 +92,9 @@ xterm_compatible_fg_bg() {
 }
 
 typeset -i success=0
-
 typeset -i is_dark_bg=0
+typeset -i exitrc=0
+
 set_default_bg
 
 if [[ -n $TERM ]] ; then
@@ -91,6 +110,7 @@ if [[ -n $TERM ]] ; then
 	    ;;
     esac
 fi
+
 if (( $success )) ; then
     if (( is_dark_bg == 1 )) ; then
 	echo "Dark background from xterm control"
@@ -111,22 +131,26 @@ elif [[ -n $COLORFGBG ]] ; then
 	    ;;
 	-1 | * )
 	    echo "Can't decide from COLORFGBG"
-	    exit 1
+	    exit_if_not_sourced 1
 	    ;;
     esac
 else
     echo "Can't decide"
-    exit 1
+    exit_if_not_sourced 1
 fi
 
 # If we were sourced, then set
 # some environment variables
-if [[ $0 != ${BASH_SOURCE[0]} ]] ; then
-    if (( $is_dark_bg == 1 ))  ; then
-       export DARK_BG=1
-       export COLORFGBG='0;15'
-    else
-       export DARK_BG=0
-       export COLORFGBG='15;0'
+if is_sourced  ; then
+    if (( exitrc == 0 )) ; then
+	if (( $is_dark_bg == 1 ))  ; then
+	    export DARK_BG=1
+	    export COLORFGBG='0;15'
+	else
+	    export DARK_BG=0
+	    export COLORFGBG='15;0'
+	fi
     fi
+else
+    exit 0
 fi
