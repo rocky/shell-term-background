@@ -117,7 +117,6 @@ if (( $success )) ; then
     else
 	echo "Light background from xterm control"
     fi
-    exit 0
 elif [[ -n $COLORFGBG ]] ; then
     # Note that this can be wrong if
     # COLORFGBG was set prior invoking a terminal
