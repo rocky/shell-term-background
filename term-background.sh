@@ -5,7 +5,7 @@ typeset -i success=0
 
 # On return, variable is_dark_bg is set
 # We follow Emacs logic (at least initially)
-set_default_bg() {
+get_default_bg() {
     if [[ -n $TERM ]] ; then
 	case $TERM in
 	    xterm* | dtterm | eterm* )
@@ -95,7 +95,7 @@ typeset -i success=0
 typeset -i is_dark_bg=0
 typeset -i exitrc=0
 
-set_default_bg
+get_default_bg
 
 if [[ -n $TERM ]] ; then
     case $TERM in
