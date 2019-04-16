@@ -8,10 +8,18 @@ typeset -i success=0
 get_default_bg() {
     if [[ -n $TERM ]] ; then
 	case $TERM in
+	    xterm-256color )
+		# 382.5 = (* .6 (+ 255 255 255))
+		TERMINAL_COLOR_MIDPOINT=${TERMINAL_COLOR_MIDPOINT:-383}
+		;;
 	    xterm* | dtterm | eterm* )
+		# 117963 = (* .6 (+ 65535 65535 65535))
+		TERMINAL_COLOR_MIDPOINT=${TERMINAL_COLOR_MIDPOINT:-117963}
 		is_dark_bg=0
 		;;
+
 	    * )
+		TERMINAL_COLOR_MIDPOINT=${TERMINAL_COLOR_MIDPOINT:-117963}
 		is_dark_bg=1
 		;;
 	esac
@@ -21,10 +29,9 @@ get_default_bg() {
 # Pass as parameters R G B values in hex
 # On return, variable is_dark_bg is set
 is_dark_rgb() {
-    typeset r g b
+    typeset -i r g b
     r=$1; g=$2; b=$3
-    # 117963 = (* .6 (+ 65535 65535 65535))
-    if (( (16#$r + 16#$g + 16#$b) < 117963 )) ; then
+    if (( (16#r + 16#g + 16#b) < TERMINAL_COLOR_MIDPOINT )) ; then
 	is_dark_bg=1
     else
 	is_dark_bg=0
