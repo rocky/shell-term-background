@@ -29,9 +29,9 @@ get_default_bg() {
 # Pass as parameters R G B values in hex
 # On return, variable is_dark_bg is set
 is_dark_rgb() {
-    typeset -i r g b
+    typeset r g b
     r=$1; g=$2; b=$3
-    if (( (16#r + 16#g + 16#b) < TERMINAL_COLOR_MIDPOINT )) ; then
+    if (( (16#$r + 16#$g + 16#$b) < $TERMINAL_COLOR_MIDPOINT )) ; then
 	is_dark_bg=1
     else
 	is_dark_bg=0
