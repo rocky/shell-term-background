@@ -18,7 +18,7 @@ defaults for some known terminals set from the `TERM` environment variable.
 
 There is one other envirnoment variable and aspect worth
 mentioning. When we can get pixel intensities of red, blue, and green
-values of the backgroun, we can use that determine light and dark
+values of the background, we can use that determine light and dark
 based the combied sum: zero values indicate an absense of a particular
 color. However the upper value can change. On a `xterm-256color` or
 derivative of that, the highest intensity is `0xff` while on an
