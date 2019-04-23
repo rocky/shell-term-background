@@ -10,7 +10,7 @@ output will start either "Dark background", "Light background" or
 "Can't decide".
 
 The heuristics it uses is to try to query the background color using
-an [xterm control sequence](https://www.talisman.org/~erlkonig/documents/xterm-color-queries/)
+an [xterm control sequence](https://www.talisman.org/~erlkonig/documents/xterm-color-queries/).
 
 Many, but not all, terminals support this query. So as a fallback we
 query environment variable `COLORFGBG` and failing this we use some
