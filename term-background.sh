@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# ^^^^^^^^^^^^ Use env rather than assume we've got /bin/bash.
+# This works better on OSX where /bin/bash is brain dead.
+
 # Try to determine if we have dark or light terminal background
 
 typeset -i success=0
