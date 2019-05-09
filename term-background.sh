@@ -5,6 +5,7 @@
 # Try to determine if we have dark or light terminal background
 
 typeset -i success=0
+typeset    method="xterm control"
 
 # On return, variable is_dark_bg is set
 # We follow Emacs logic (at least initially)
@@ -101,13 +102,30 @@ xterm_compatible_fg_bg() {
     return 0
 }
 
+# From a comment left duthen in my StackOverflow answer cited above.
+osx_get_terminal_fg_bg() {
+    RGB_bg=($(osascript -e 'tell application "Terminal" to get the background color of the current settings of the selected tab of front window'))
+    # typeset -p RGB_bg
+    (($? != 0)) && return 1
+    TERMINAL_COLOR_MIDPOINT=117963
+    is_dark_rgb ${RGB_bg[@]}
+    method="OSX osascript"
+    success=1
+
+}
+
+
 typeset -i success=0
 typeset -i is_dark_bg=0
 typeset -i exitrc=0
 
 get_default_bg
 
-if [[ -n $TERM ]] ; then
+if [[ ${BASH_VERSINFO[5]} == *"darwin"* ]] ; then
+    osx_get_terminal_fg_bg
+fi
+
+if (( !success )) && [[ -n $TERM ]] ; then
     case $TERM in
 	xterm* | gnome | rxvt* )
 	    typeset -a RGB_fg RGB_bg
@@ -121,11 +139,11 @@ if [[ -n $TERM ]] ; then
     esac
 fi
 
-if (( $success )) ; then
+if (( success )) ; then
     if (( is_dark_bg == 1 )) ; then
-	echo "Dark background from xterm control"
+	echo "Dark background from ${method}"
     else
-	echo "Light background from xterm control"
+	echo "Light background from ${method}"
     fi
 elif [[ -n $COLORFGBG ]] ; then
     # Note that this can be wrong if
