@@ -10,7 +10,10 @@ typeset    method="xterm control"
 # On return, variable is_dark_bg is set
 # We follow Emacs logic (at least initially)
 get_default_bg() {
-    if [[ -n $TERM ]] ; then
+    if [[ -n $COLORFGBG ]] ; then
+	method="COLORFGBG"
+	is_dark_colorfgbg
+    elif [[ -n $TERM ]] ; then
 	case $TERM in
 	    xterm-256color )
 		# 382.5 = (* .6 (+ 255 255 255))
@@ -48,9 +51,11 @@ is_dark_colorfgbg() {
     case $COLORFGBG in
 	'15;0' | '15;default;0' )
 	    is_dark_bg=1
+	    success=1
 	    ;;
 	'0;15' | '0;default;15' )
 	    is_dark_bg=0
+	    success=1
 	    ;;
 	* )
 	    is_dark_bg=-1
@@ -104,14 +109,18 @@ xterm_compatible_fg_bg() {
 
 # From a comment left duthen in my StackOverflow answer cited above.
 osx_get_terminal_fg_bg() {
-    RGB_bg=($(osascript -e 'tell application "Terminal" to get the background color of the current settings of the selected tab of front window'))
-    # typeset -p RGB_bg
-    (($? != 0)) && return 1
-    TERMINAL_COLOR_MIDPOINT=117963
-    is_dark_rgb ${RGB_bg[@]}
-    method="OSX osascript"
-    success=1
-
+    if [[ -n $COLORFGBG ]] ; then
+	method="COLORFGBG"
+	is_dark_colorfgbg
+    else
+	RGB_bg=($(osascript -e 'tell application "Terminal" to get the background color of the current settings of the selected tab of front window'))
+	# typeset -p RGB_bg
+	(($? != 0)) && return 1
+	TERMINAL_COLOR_MIDPOINT=117963
+	is_dark_rgb ${RGB_bg[@]}
+	method="OSX osascript"
+	success=1
+    fi
 }
 
 
@@ -172,10 +181,10 @@ if is_sourced  ; then
     if (( exitrc == 0 )) ; then
 	if (( $is_dark_bg == 1 ))  ; then
 	    export DARK_BG=1
-	    export COLORFGBG='0;15'
+	    [[ -z $COLORFGBG ]] && export COLORFGBG='0;15'
 	else
 	    export DARK_BG=0
-	    export COLORFGBG='15;0'
+	    [[ -z $COLORFGBG ]] && export COLORFGBG='15;0'
 	fi
     fi
 else
