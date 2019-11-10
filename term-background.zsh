@@ -1,5 +1,5 @@
-#!/usr/bin/env ksh
-# ^^^^^^^^^^^^ Use env rather ksh installed somewhere
+#!/usr/bin/env zsh
+# ^^^^^^^^^^^^ Use env rather zsh installed somewhere
 
 #   Copyright (C) 2019, Rocky Bernstein <rocky@gnu.org>
 #   This program is free software; you can redistribute it and/or
@@ -59,7 +59,7 @@ get_default_bg() {
 is_dark_rgb() {
     typeset r g b
     r=$1; g=$2; b=$3
-    if (( (16#r + 16#g + 16#b) < TERMINAL_COLOR_MIDPOINT )) ; then
+    if (( (16#$r + 16#$g + 16#$b) < TERMINAL_COLOR_MIDPOINT )) ; then
 	is_dark_bg=1
     else
 	is_dark_bg=0
@@ -85,12 +85,10 @@ is_dark_colorfgbg() {
 }
 
 is_sourced() {
-    typeset -i max=${1:-1}
-    typeset -i rc
-    if (( .sh.level > max )); then
-	return 0
-    else
+    if [[ 0 == ${#funcfiletrace[@]} ]]; then
 	return 1
+    else
+	return 0
     fi
 }
 
@@ -112,14 +110,14 @@ exit_if_not_sourced() {
 # User should set up RGB_fg and RGB_bg arrays
 xterm_compatible_fg_bg() {
     typeset fg bg junk
-    stty -echo
+    stty -echo 2>/dev/null
     # Issue command to get both foreground and
     # background color
     #            fg       bg
     echo -ne '\e]10;?\a\e]11;?\a'
     IFS=: read -t 0.1 -d $'\a' x fg
     IFS=: read -t 0.1 -d $'\a' x bg
-    stty echo
+    stty echo 2>/dev/null
     [[ -z $bg ]] && return 1
     typeset -p fg
     typeset -p bg
@@ -202,7 +200,7 @@ fi
 # some environment variables
 if is_sourced  ; then
     if (( exitrc == 0 )) ; then
-	if (( is_dark_bg == 1 ))  ; then
+	if (( $is_dark_bg == 1 ))  ; then
 	    export DARK_BG=1
 	    [[ -z $COLORFGBG ]] && export COLORFGBG='0;15'
 	else
@@ -210,4 +208,6 @@ if is_sourced  ; then
 	    [[ -z $COLORFGBG ]] && export COLORFGBG='15;0'
 	fi
     fi
+else
+    exit 0
 fi

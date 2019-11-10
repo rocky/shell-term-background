@@ -1,5 +1,6 @@
-#!/usr/bin/env zsh
-# ^^^^^^^^^^^^ Use env rather zsh installed somewhere
+#!/usr/bin/env bash
+# ^^^^^^^^^^^^ Use env rather than assume we've got /bin/bash.
+# This works better on OSX where /bin/bash is brain dead.
 
 #   Copyright (C) 2019, Rocky Bernstein <rocky@gnu.org>
 #   This program is free software; you can redistribute it and/or
@@ -18,12 +19,6 @@
 #   MA 02111 USA.
 
 # Try to determine if we have dark or light terminal background
-
-# This file is copied from
-# https://github.com/rocky/bash-term-background If you have problems
-# with this script open an issue there.  Note: I use github project
-# ratings to help me determine if project issues are worth fixing when
-# (as usually the case), there are several issues I could be working on.
 
 typeset -i success=0
 typeset    method="xterm control"
@@ -85,7 +80,7 @@ is_dark_colorfgbg() {
 }
 
 is_sourced() {
-    if [[ 0 == ${#funcfiletrace[@]} ]]; then
+    if [[ $0 == ${BASH_SOURCE[0]} ]] ; then
 	return 1
     else
 	return 0
@@ -110,14 +105,14 @@ exit_if_not_sourced() {
 # User should set up RGB_fg and RGB_bg arrays
 xterm_compatible_fg_bg() {
     typeset fg bg junk
-    stty -echo
+    stty -echo 2>/dev/null
     # Issue command to get both foreground and
     # background color
     #            fg       bg
     echo -ne '\e]10;?\a\e]11;?\a'
     IFS=: read -t 0.1 -d $'\a' x fg
     IFS=: read -t 0.1 -d $'\a' x bg
-    stty echo
+    stty echo 2>/dev/null
     [[ -z $bg ]] && return 1
     typeset -p fg
     typeset -p bg
@@ -151,7 +146,7 @@ typeset -i exitrc=0
 
 get_default_bg
 
-if [[ $(uname -s) =~ darwin ]] ; then
+if [[ ${BASH_VERSINFO[5]} == *"darwin"* ]] ; then
     osx_get_terminal_fg_bg
 fi
 
@@ -200,7 +195,7 @@ fi
 # some environment variables
 if is_sourced  ; then
     if (( exitrc == 0 )) ; then
-	if (( $is_dark_bg == 1 ))  ; then
+	if (( is_dark_bg == 1 ))  ; then
 	    export DARK_BG=1
 	    [[ -z $COLORFGBG ]] && export COLORFGBG='0;15'
 	else

@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
-# ^^^^^^^^^^^^ Use env rather than assume we've got /bin/bash.
-# This works better on OSX where /bin/bash is brain dead.
+#!/usr/bin/env ksh
+# ^^^^^^^^^^^^ Use env rather ksh installed somewhere
 
 #   Copyright (C) 2019, Rocky Bernstein <rocky@gnu.org>
 #   This program is free software; you can redistribute it and/or
@@ -19,6 +18,12 @@
 #   MA 02111 USA.
 
 # Try to determine if we have dark or light terminal background
+
+# This file is copied from
+# https://github.com/rocky/bash-term-background If you have problems
+# with this script open an issue there.  Note: I use github project
+# ratings to help me determine if project issues are worth fixing when
+# (as usually the case), there are several issues I could be working on.
 
 typeset -i success=0
 typeset    method="xterm control"
@@ -54,7 +59,7 @@ get_default_bg() {
 is_dark_rgb() {
     typeset r g b
     r=$1; g=$2; b=$3
-    if (( (16#$r + 16#$g + 16#$b) < TERMINAL_COLOR_MIDPOINT )) ; then
+    if (( (16#r + 16#g + 16#b) < TERMINAL_COLOR_MIDPOINT )) ; then
 	is_dark_bg=1
     else
 	is_dark_bg=0
@@ -80,10 +85,12 @@ is_dark_colorfgbg() {
 }
 
 is_sourced() {
-    if [[ $0 == ${BASH_SOURCE[0]} ]] ; then
-	return 1
-    else
+    typeset -i max=${1:-1}
+    typeset -i rc
+    if (( .sh.level > max )); then
 	return 0
+    else
+	return 1
     fi
 }
 
@@ -105,14 +112,14 @@ exit_if_not_sourced() {
 # User should set up RGB_fg and RGB_bg arrays
 xterm_compatible_fg_bg() {
     typeset fg bg junk
-    stty -echo
+    stty -echo 2>/dev/null
     # Issue command to get both foreground and
     # background color
     #            fg       bg
     echo -ne '\e]10;?\a\e]11;?\a'
     IFS=: read -t 0.1 -d $'\a' x fg
     IFS=: read -t 0.1 -d $'\a' x bg
-    stty echo
+    stty echo 2>/dev/null
     [[ -z $bg ]] && return 1
     typeset -p fg
     typeset -p bg
@@ -146,7 +153,7 @@ typeset -i exitrc=0
 
 get_default_bg
 
-if [[ ${BASH_VERSINFO[5]} == *"darwin"* ]] ; then
+if [[ $(uname -s) =~ darwin ]] ; then
     osx_get_terminal_fg_bg
 fi
 
@@ -203,6 +210,4 @@ if is_sourced  ; then
 	    [[ -z $COLORFGBG ]] && export COLORFGBG='15;0'
 	fi
     fi
-else
-    exit 0
 fi
