@@ -11,7 +11,7 @@ Many, but not all, terminals support this query. So as a fallback we query envir
 defaults for some known terminals set from the `TERM` environment variable.
 
 There is one other envirnoment variable and aspect worth mentioning. When we can get pixel intensities of red, blue, and green
-values of the background, we can use that determine light and dark based the combied sum: zero values indicate an absense of a particular
+values of the background, we can use that determine light and dark based the combined sum: zero values indicate an absense of a particular
 color. However the upper value can change. On a `xterm-256color` or derivative of that, the highest intensity is `0xff` while on an
 `xterm` or a deriviative of that (which is also not a derivative of `xterm-256color`) the highest intensity is `0xffff`.  The environment variable
 `TERMINAL_COLOR_MIDPOINT` has what we think is the midpoint (grey) color value. For `xterm-256color` it is 383, while for `xterm` it is 117963.
