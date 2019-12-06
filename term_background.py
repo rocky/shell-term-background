@@ -2,14 +2,15 @@
 Figure out if the terminal has a light or dark background
 
 We consult environment variables:
-- DARK_BG
+- LC_DARK_BG
+- DARK_BG   (Deprecated)
 - COLORFGBG
 - TERM
 
-If DARK_BG is set and it isn't 0 then we have a dark background
+If LC_DARK_BG is set and it isn't 0 then we have a dark background
 else a light background.
 
-If DARK_BG is not set but COLORFGBG is set and it is '0;15' then we have a dark background
+If LC_DARK_BG is not set but COLORFGBG is set and it is '0;15' then we have a dark background
 and if it is '15;0' then a light background.
 
 If none of the above work but TERM is set and the terminal understands
@@ -61,9 +62,9 @@ def is_dark_rgb(r, g, b):
 
 
 def is_dark_color_fg_bg():
-    """Consult (environment) variables DARK_BG and COLORFGB
+    """Consult (environment) variables LC_DARK_BG and COLORFGB
     On return, variable is_dark_bg is set"""
-    dark_bg = environ.get("DARK_BG", None)
+    dark_bg = environ.get("LC_DARK_BG", None)
     if dark_bg is not None:
         return dark_bg != "0"
     color_fg_bg = environ.get("COLORFGBG", None)
