@@ -1,4 +1,4 @@
-These shell scripts, one for `bash`, one for `zsh`, and one for `ksh` try to determine if your terminal has dark or light background.
+These scripts, one for `bash`, one for `zsh`, one for `ksh`, and one that can be called from Python try to determine if your terminal has dark or light background.
 
 If you source this from a shell session it will set and export `COLORFGBG` to '0;15' for dark backgrounds and '15;0' for light backgrounds which is
 a convention used by some programs. Since I find this a little arcane, the program also sets and exports `DARK_BG` to 1 for dark backgrounds and 0 for light.
