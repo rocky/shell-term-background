@@ -130,7 +130,7 @@ xterm_compatible_fg_bg() {
   [[ -z $fg ]] && return 1
   # Convert to array
   typeset -p fg
-  IFS='/' read -ra RGB_fg <<< "$fg"
+  IFS='/' read -ra RGB_fg <<<"$fg"
   typeset -p RGB_fg
 
   # Turn TTY off
@@ -148,7 +148,7 @@ xterm_compatible_fg_bg() {
   [[ -z $bg ]] && return 1
   # Convert to array
   typeset -p bg
-  IFS='/' read -ra RGB_bg <<< "$bg"
+  IFS='/' read -ra RGB_bg <<<"$bg"
   typeset -p RGB_bg
   xterm_osc_done=1
   return 0
