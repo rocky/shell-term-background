@@ -104,7 +104,7 @@ exit_if_not_sourced() {
 #
 # User should set up RGB_fg and RGB_bg arrays
 xterm_compatible_fg_bg() {
-    typeset fg bg junk
+    typeset fg bg
     stty -echo 2>/dev/null
     # Issue command to get both foreground and
     # background color
