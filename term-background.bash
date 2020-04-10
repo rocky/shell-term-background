@@ -64,7 +64,6 @@ is_dark_rgb() {
   bg_b=$6
   a_fg=$((16#"$fg_r" + 16#"$fg_g" + 16#"$fg_b"))
   a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
-  echo "Avg test: a_fg: $a_fg a_bg: $a_bg"
   if [[ $a_fg -gt $a_bg ]]; then
     is_dark_bg=1
   else
