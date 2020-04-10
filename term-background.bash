@@ -93,7 +93,7 @@ is_sourced() {
 exit_if_not_sourced() {
     exitrc=${1:-0}
     if ! is_sourced ; then
-	exit $exitrc
+	exit "$exitrc"
     fi
 }
 
