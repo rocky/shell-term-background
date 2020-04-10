@@ -91,7 +91,7 @@ is_dark_colorfgbg() {
 }
 
 is_sourced() {
-  if [[ $0 == "BASH_SOURCE[0]}" ]]; then
+  if [[ $0 == "${BASH_SOURCE[0]}" ]]; then
     return 1
   else
     return 0
