@@ -153,7 +153,7 @@ xterm_compatible_fg_bg() {
   return 0
 }
 
-# From a comment left duthen in my StackOverflow answer cited above.
+# From a comment left by user "duthen" in my StackOverflow answer cited above.
 osx_get_terminal_fg_bg() {
   if [[ -n $COLORFGBG ]]; then
     method="COLORFGBG"
@@ -175,7 +175,7 @@ typeset -i exitrc=0
 typeset -i xterm_osc_done=0
 
 # Pre-analysis for non-COLORFGBG terminals
-if [ 3711 -lt "$VTE_VERSION" ] && [ -z "$COLORFGBG" ]; then
+if (( 3711 < VTE_VERSION ) && [[ -z "$COLORFGBG" ]]; then
   # Try Xterm Operating System Command (OSC) (Esc-])
   if xterm_compatible_fg_bg; then
     is_dark_rgb ${RGB_fg[@]} ${RGB_bg[@]}
