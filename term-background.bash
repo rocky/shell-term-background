@@ -90,7 +90,7 @@ is_dark_colorfgbg() {
 }
 
 is_sourced() {
-  if [[ $0 == "${BASH_SOURCE[0]}" ]]; then
+  if [[ $0 == ${BASH_SOURCE[0]} ]]; then
     return 1
   else
     return 0
@@ -199,7 +199,7 @@ fi
 
 if ((!success)) && [[ -n $TERM ]]; then
   case $TERM in
-  xterm* | gnome | rxvt*)
+  xterm* | gnome | rxvt* | linux)
     typeset -a RGB_fg RGB_bg
     if [[ $xterm_osc_done -eq 1 ]]; then
       if xterm_compatible_fg_bg; then
