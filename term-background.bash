@@ -2,7 +2,7 @@
 # ^^^^^^^^^^^^ Use env rather than assume we've got /bin/bash.
 # This works better on OSX where /bin/bash is brain dead.
 
-#   Copyright (C) 2019, Rocky Bernstein <rocky@gnu.org>
+#   Copyright (C) 2019-2020, Rocky Bernstein <rocky@gnu.org>
 #   This program is free software; you can redistribute it and/or
 #   modify it under the terms of the GNU General Public License as
 #   published by the Free Software Foundation; either version 2, or
@@ -21,7 +21,7 @@
 # Try to determine if we have dark or light terminal background
 
 typeset -i success=0
-typeset method="xterm control"
+typeset    method="xterm control"
 
 # On return, variable is_dark_bg is set
 # We follow Emacs logic (at least initially)
@@ -153,7 +153,7 @@ xterm_compatible_fg_bg() {
   return 0
 }
 
-# From a comment left duthen in my StackOverflow answer cited above.
+# From a comment left by user "duthen" in my StackOverflow answer cited above.
 osx_get_terminal_fg_bg() {
   if [[ -n $COLORFGBG ]]; then
     method="COLORFGBG"
@@ -175,8 +175,7 @@ typeset -i exitrc=0
 typeset -i xterm_osc_done=0
 
 # Pre-analysis for non-COLORFGBG terminals
-let vte_version=$VTE_VERSION
-if [[ (( 3711 -lt vte_version )) && (( -z "$COLORFGBG" )) ]]; then
+if (( 3711 < VTE_VERSION ) && [[ -z "$COLORFGBG" ]]; then
   # Try Xterm Operating System Command (OSC) (Esc-])
   if xterm_compatible_fg_bg; then
     is_dark_rgb ${RGB_fg[@]} ${RGB_bg[@]}
