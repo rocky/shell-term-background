@@ -2,7 +2,7 @@
 # ^^^^^^^^^^^^ Use env rather than assume we've got /bin/bash.
 # This works better on OSX where /bin/bash is brain dead.
 
-#   Copyright (C) 2019, Rocky Bernstein <rocky@gnu.org>
+#   Copyright (C) 2019-2020, Rocky Bernstein <rocky@gnu.org>
 #   This program is free software; you can redistribute it and/or
 #   modify it under the terms of the GNU General Public License as
 #   published by the Free Software Foundation; either version 2, or
@@ -21,7 +21,7 @@
 # Try to determine if we have dark or light terminal background
 
 typeset -i success=0
-typeset method="xterm control"
+typeset    method="xterm control"
 
 # On return, variable is_dark_bg is set
 # We follow Emacs logic (at least initially)
