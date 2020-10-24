@@ -1,2 +1,9 @@
 *~
+*.pyc
 /.cache
+/.python-version
+/__pkginfo__.pyc
+/__pycache__
+/build
+/dist
+/term_background.egg-info
