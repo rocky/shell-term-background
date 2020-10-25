@@ -1,3 +1,8 @@
+1.0.1
+-----
+
+Administrivia - Python being its usual quirky self.
+
 1.0.0
 -----
 

@@ -1,6 +1,12 @@
 2020-10-24  rocky <rocky@gnu.org>
 
-	* NEWS.md: Get ready for release 1.0.0
+	* Makefile, README.rst, term_background/__init__.py,
+	term_background/version.py: Get ready for release 1.0.1
+
+2020-10-24  rocky <rocky@gnu.org>
+
+	* ChangeLog, NEWS.md, term_background/__init__.py,
+	term_background/__main__.py: Get ready for release 1.0.0
 
 2020-10-24  rocky <rocky@gnu.org>
 
