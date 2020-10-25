@@ -1,0 +1,201 @@
+2020-10-24  rocky <rocky@gnu.org>
+
+	* NEWS.md: Get ready for release 1.0.0
+
+2020-10-24  rocky <rocky@gnu.org>
+
+	* .gitignore, Makefile, README.rst, __pkginfo__.py,
+	admin-tools/check-versions.sh, admin-tools/git2cl,
+	admin-tools/make-dist.sh, admin-tools/pyenv-versions, setup.py,
+	term_background/.gitignore, term_background.py =>
+	term_background/__init__.py, term_background/version.py,
+	test/.gitignore, test/test_term_background.py: Turn this into a
+	Python package.  Add a test too!
+
+2020-05-28  rocky <rocky@gnu.org>
+
+	* README.md: Revise README.md to reflect more-recent changes.
+
+2020-04-11  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #8 from egberts/master Incorporate Rocky's request, and some forced integer operation, and
+	`linux` TERM
+
+2020-04-11  steve <steve@arca.leo>
+
+	* term-background.bash: - store is_sourced() BASH_SOURCE[0] back to unquoted.  - Force it to integer mode for integer comparison because string
+	comparison failed when leading zero appears during new pre-analysis
+	for non-COLORFGBG/older VTE library.  - Added `linux` TERM to the same logic as `xterm*`, `gnome`, and
+	`rxvt*` TERMs.
+
+2020-04-11  rocky <rocky@gnu.org>
+
+	* README.md, term-background.bash, term-background.ksh,
+	term-background.zsh: Sync up ksh and zsh scripts with bash
+
+2020-04-11  rocky <rocky@gnu.org>
+
+	* term-background.bash: Small tweaks
+
+2020-04-11  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #7 from egberts/master Better background detector
+
+2020-04-10  steve <steve@arca.leo>
+
+	* term-background.bash: Oops, Need to actually see the BASH_SOURCE
+	variable after double-quoting it, so add that $ next to the variable
+	name so we can see its content.
+
+2020-04-10  steve <steve@arca.leo>
+
+	* term-background.bash: Use JetBrain PyCharm's bash syntax formatter
+	to ensure that the default 2-space indentation are being done as
+	well as proper spacing between various components of the bash
+	programming lexicals.
+
+2020-04-10  steve <steve@arca.leo>
+
+	* term-background.bash: Use the sum the 3 elements of RGB of each
+	the foreground and the background so that a more accurate
+	determination can be made as to what constitute a light background
+	or dark background.
+
+2020-04-10  steve <steve@arca.leo>
+
+	* term-background.bash: Remove 'junk' variable as it appears to be
+	unused.
+
+2020-04-10  steve <steve@arca.leo>
+
+	* term-background.bash: Wrap return value with double quote to
+	prevent globbing and word-splitting.
+
+2020-04-10  steve <steve@arca.leo>
+
+	* term-background.bash: Wrap BASH_SOURCE environment variable with
+	double quotes to ensure protection against GLOB'ing.
+
+2020-03-12  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.md: Update README.md
+
+2020-03-12  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.md: Update README.md
+
+2019-12-06  rocky <rocky@gnu.org>
+
+	* term-background.bash, term-background.ksh, term-background.zsh,
+	term_background.py: DARK_BG -> LC_DARK_BG However DARK_BG is not gone yet, just deprecated.  Fixes #4
+
+2019-11-11  rocky <rocky@gnu.org>
+
+	* term_background.py: Add Python equivalent
+
+2019-11-10  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.md: Update README.md
+
+2019-11-09  rocky <rocky@gnu.org>
+
+	* term-background.sh => term-background.bash, kterm-background.sh
+	=> term-background.ksh, zterm-background.sh => term-background.zsh: 
+	Squelch stty errors and ...  is more POSIX shell agnostic in shell script naming.
+
+2019-11-04  rocky <rocky@gnu.org>
+
+	* kterm-background.sh, term-background.sh, zterm-background.sh: 
+	Address ksh lint warnings...  Note though that some things that can be done in ksh don't work in
+	bash or zsh, notably (( 16#r + 16#g ))
+
+2019-10-31  rocky <rocky@gnu.org>
+
+	* README.md, kterm-background.sh: Add ksh version of term-background
+
+2019-09-10  rocky <rocky@gnu.org>
+
+	* README.md: Mention zsh script
+
+2019-09-10  rocky <rocky@gnu.org>
+
+	* zterm-background.sh: Add zsh version
+
+2019-09-01  rocky <rocky@gnu.org>
+
+	* .gitignore, COPYING, term-background.sh: Add GPL 2+ license
+
+2019-06-28  rocky <rb@dustyfeet.com>
+
+	* term-background.sh: Respect COLORTERMFGBG and ...  Had setting backwards.
+
+2019-05-09  rocky <rocky@gnu.org>
+
+	* term-background.sh: Add OSX osascript method suggested by duthen
+
+2019-04-26  rocky <rocky@gnu.org>
+
+	* term-background.sh: Use /usr/bin/env bash rather than /bin/bash This works better on OSX where /bin/bash is brain dead.  Also might
+	be better on csh-centric OS's. FreeBSD/NetBSD?
+
+2019-04-23  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.md: Update README.md
+
+2019-04-23  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.md: Update README.md
+
+2019-04-23  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.md: Update README.md
+
+2019-04-23  rocky <rocky@gnu.org>
+
+	* README.md: Note TERMINAL_COLOR_MIDPOINT.
+
+2019-04-17  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #3 from rocky/TERMINAL_COLOR_MIDPOINT Terminal color midpoint
+
+2019-04-16  rocky <rb@dustyfeet.com>
+
+	* term-background.sh: Try user-settable TERMINAL_COLOR_MIDPOINT var
+
+2018-03-25  rocky <rocky@gnu.org>
+
+	* term-background.sh: get->set
+
+2018-03-10  rocky <rb@dustyfeet.com>
+
+	* term-background.sh: Fix erroneous early exiting
+
+2017-05-24  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.md: Update README.md
+
+2016-06-25  rocky <rocky@gnu.org>
+
+	* term-background.sh: Handle source'ing better
+
+2015-12-24  R. Bernstein <rocky@users.noreply.github.com>
+
+	* term-background.sh: doc typosb
+
+2015-12-24  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.md: Update README.md
+
+2015-12-24  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.md: Markdown format
+
+2015-12-24  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.md: typos
+
+2015-12-24  rocky <rocky@gnu.org>
+
+	* First cut at trying to figure out if terminal has a light or dark
+	background
+
