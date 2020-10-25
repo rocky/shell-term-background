@@ -12,7 +12,6 @@ When we can get pixel intensities of red, blue, and green values of the backgrou
 
 You can set any of these environment variables to influence the output decision.
 
-Many thanks to Thomas Dickey, Egmont Koblinger, and Gilles, for
- explanations (and code!) via `unix.stackexchange <http://unix.stackexchange.com/questions/245378/common-environment-variable-to-set-dark-or-light-terminal-background/245381#245381>`_. John Green had the idea to compare the foreground and background colors instead comparing the background against the midway gray color and implemented that change here.
+Many thanks to Thomas Dickey, Egmont Koblinger, and Gilles, for explanations (and code!) via `unix.stackexchange <http://unix.stackexchange.com/questions/245378/common-environment-variable-to-set-dark-or-light-terminal-background/245381#245381>`_. John Green had the idea to compare the foreground and background colors instead comparing the background against the midway gray color and implemented that change here.
 
 Of course bugs and lacuna in this code are mine.

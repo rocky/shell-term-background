@@ -22,7 +22,7 @@ build:
 develop:
 	$(PIP) install -e .
 
-#: Install mathicsscript
+#: Install Python term-background
 install:
 	$(PYTHON) setup.py install
 
@@ -32,7 +32,7 @@ check:
 
 # Check StructuredText long description formatting
 check-rst:
-	$(PYTHON) setup.py --long-description | ./rst2html.py > mathicsscript.html
+	$(PYTHON) setup.py --long-description | ./rst2html.py > term-background.html
 
 #: Remove derived files
 clean:
