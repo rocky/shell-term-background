@@ -175,7 +175,7 @@ typeset -i exitrc=0
 typeset -i xterm_osc_done=0
 
 # Pre-analysis for non-COLORFGBG terminals
-if (( 3711 < VTE_VERSION ) && [[ -z "$COLORFGBG" ]]; then
+if (( 3711 < VTE_VERSION )) && [[ -z "$COLORFGBG" ]]; then
   # Try Xterm Operating System Command (OSC) (Esc-])
   if xterm_compatible_fg_bg; then
     is_dark_rgb ${RGB_fg[@]} ${RGB_bg[@]}
