@@ -1,3 +1,5 @@
+|Pypi Installs| |Latest Version| |Supported Python Versions|
+
 The Python module contained  is part of a broader set of scripts
 
 For the shell scripts, if you source this from a shell session it will set and export ``COLORFGBG`` to ``0;15`` for dark backgrounds and ``15;0`` for light backgrounds which is
@@ -17,3 +19,8 @@ You can set any of these environment variables to influence the output decision.
 Many thanks to Thomas Dickey, Egmont Koblinger, and Gilles, for explanations (and code!) via `unix.stackexchange <http://unix.stackexchange.com/questions/245378/common-environment-variable-to-set-dark-or-light-terminal-background/245381#245381>`_. John Green had the idea to compare the foreground and background colors instead comparing the background against the midway gray color and implemented that change here.
 
 Of course bugs and lacuna in this code are mine.
+
+.. |Latest Version| image:: https://badge.fury.io/py/term-background.svg
+		 :target: https://badge.fury.io/py/term-background
+.. |Pypi Installs| image:: https://pepy.tech/badge/term-background
+.. |Supported Python Versions| image:: https://img.shields.io/pypi/pyversions/term-background.svg
