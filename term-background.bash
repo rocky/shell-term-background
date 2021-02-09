@@ -71,6 +71,21 @@ is_dark_rgb() {
   fi
 }
 
+# NOTE: We could have FG=#403020 BG=#203040 and tie
+# On return, variable is_dark_bg is set
+is_dark_rgb_from_bg() {
+  midpoint=32767
+  bg_r=$1
+  bg_g=$2
+  bg_b=$3
+  typeset -i a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
+  if (( a_bg < midpoint )); then
+    is_dark_bg=1
+  else
+    is_dark_bg=0
+  fi
+}
+
 # Consult (environment) variable COLORFGB
 # On return, variable is_dark_bg is set
 is_dark_colorfgbg() {
@@ -163,7 +178,7 @@ osx_get_terminal_fg_bg() {
     retsts=$?
     # typeset -p RGB_bg
     ((retsts != 0)) && return 1
-    is_dark_rgb ${RGB_fg[@]} ${RGB_bg[@]}
+    is_dark_rgb_from_bg ${RGB_bg[@]}
     method="OSX osascript"
     success=1
   fi
