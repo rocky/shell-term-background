@@ -7,4 +7,5 @@ import sys
 if not '-m' in sys.argv:
     from term_background.__main__ import *
 
+from term_background.__main__ import is_dark_background
 from term_background.version import __version__
