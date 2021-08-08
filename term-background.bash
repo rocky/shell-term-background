@@ -262,11 +262,15 @@ if is_sourced; then
     if ((is_dark_bg == 1)); then
       export DARK_BG=1 # deprecated
       export LC_DARK_BG=1
-      [[ -z $COLORFGBG ]] && export COLORFGBG='0;15'
+      if [[ -z "$COLORFGBG" ]]; then
+	  export COLORFGBG='0;15'
+      fi
     else
       export DARK_BG=0
       export LC_DARK_BG=0
-      [[ -z $COLORFGBG ]] && export COLORFGBG='15;0'
+      if [[ -z "$COLORFGBG" ]] ; then
+	  export COLORFGBG='15;0'
+      fi
     fi
   fi
 else
