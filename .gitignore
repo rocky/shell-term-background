@@ -1,6 +1,7 @@
-*~
 *.pyc
+*~
 /.cache
+/.idea
 /.python-version
 /__pkginfo__.pyc
 /__pycache__
