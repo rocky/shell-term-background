@@ -182,11 +182,12 @@ osx_get_terminal_fg_bg() {
     method="COLORFGBG"
     is_dark_colorfgbg
   else
+    # shellcheck disable=SC2207
     RGB_bg=($(osascript -e 'tell application "Terminal" to get the background color of the current settings of the selected tab of front window'))
     retsts=$?
     # typeset -p RGB_bg
     ((retsts != 0)) && return 1
-    is_dark_rgb_from_bg ${RGB_bg[@]}
+    is_dark_rgb_from_bg "${RGB_bg[@]}"
     method="OSX osascript"
     success=1
   fi
@@ -201,7 +202,7 @@ typeset -i xterm_osc_done=0
 if (( 3711 < VTE_VERSION )) && [[ -z "$COLORFGBG" ]]; then
   # Try Xterm Operating System Command (OSC) (Esc-])
   if xterm_compatible_fg_bg; then
-    is_dark_rgb ${RGB_fg[@]} ${RGB_bg[@]}
+    is_dark_rgb "${RGB_fg[@]}" "${RGB_bg[@]}"
     if [[ $is_dark_bg == 1 ]]; then
       # Even though, we're xterm, assist COLORFGBG
       export COLORFGBG='0;15'
@@ -226,7 +227,7 @@ if ((!success)) && [[ -n $TERM ]]; then
     typeset -a RGB_fg RGB_bg
     if [[ $xterm_osc_done -eq 1 ]]; then
       if xterm_compatible_fg_bg; then
-        is_dark_rgb ${RGB_fg[@]} ${RGB_bg[@]}
+        is_dark_rgb "${RGB_fg[@]}" "${RGB_bg[@]}"
       fi
       success=1
     fi
