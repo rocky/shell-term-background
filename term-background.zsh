@@ -61,15 +61,31 @@ get_default_colorfgbg() {
 is_dark_rgb() {
   typeset fg_r fg_g fg_b
   typeset bg_r bg_g bg_b
-  fg_r=$1
-  fg_g=$2
-  fg_b=$3
-  bg_r=$4
-  bg_g=$5
-  bg_b=$6
+  typeset a_fg a_bg
+  fg_r=${1:-0}
+  fg_g=${2:-0}
+  fg_b=${3:-0}
+  bg_r=${4:-FF}
+  bg_g=${5:-FF}
+  bg_b=${6:-FF}
   a_fg=$((16#"$fg_r" + 16#"$fg_g" + 16#"$fg_b"))
   a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
   if [[ $a_fg -gt $a_bg ]]; then
+    is_dark_bg=1
+  else
+    is_dark_bg=0
+  fi
+}
+
+# NOTE: We could have FG=#403020 BG=#203040 and tie
+# On return, variable is_dark_bg is set
+is_dark_rgb_from_bg() {
+  midpoint=32767
+  bg_r=$1
+  bg_g=$2
+  bg_b=$3
+  typeset -i a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
+  if (( a_bg < midpoint )); then
     is_dark_bg=1
   else
     is_dark_bg=0
@@ -168,7 +184,7 @@ osx_get_terminal_fg_bg() {
     retsts=$?
     # typeset -p RGB_bg
     ((retsts != 0)) && return 1
-    is_dark_rgb ${RGB_fg[@]} ${RGB_bg[@]}
+    is_dark_rgb_from_bg ${RGB_bg[@]}
     method="OSX osascript"
     success=1
   fi
@@ -180,7 +196,7 @@ typeset -i exitrc=0
 typeset -i xterm_osc_done=0
 
 # Pre-analysis for non-COLORFGBG terminals
-if (( 3711 < VTE_VERSION ) && [[ -z "$COLORFGBG" ]]; then
+if (( 3711 < VTE_VERSION )) && [[ -z "$COLORFGBG" ]]; then
   # Try Xterm Operating System Command (OSC) (Esc-])
   if xterm_compatible_fg_bg; then
     is_dark_rgb ${RGB_fg[@]} ${RGB_bg[@]}
@@ -204,7 +220,7 @@ fi
 
 if ((!success)) && [[ -n $TERM ]]; then
   case $TERM in
-  xterm* | gnome | rxvt*)
+  xterm* | gnome | rxvt* | linux)
     typeset -a RGB_fg RGB_bg
     if [[ $xterm_osc_done -eq 1 ]]; then
       if xterm_compatible_fg_bg; then
@@ -252,11 +268,15 @@ if is_sourced; then
     if ((is_dark_bg == 1)); then
       export DARK_BG=1 # deprecated
       export LC_DARK_BG=1
-      [[ -z $COLORFGBG ]] && export COLORFGBG='0;15'
+      if [[ -z "$COLORFGBG" ]]; then
+	  export COLORFGBG='0;15'
+      fi
     else
       export DARK_BG=0
       export LC_DARK_BG=0
-      [[ -z $COLORFGBG ]] && export COLORFGBG='15;0'
+      if [[ -z "$COLORFGBG" ]] ; then
+	  export COLORFGBG='15;0'
+      fi
     fi
   fi
 else
