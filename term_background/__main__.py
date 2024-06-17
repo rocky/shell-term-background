@@ -56,7 +56,10 @@ def is_dark_rgb(r, g, b):
         #   117963 = (* .6 (+ 65535 65535 65535))
         # 8-bit values:
         #   382.5 = (* .5 (+ 255 255 255))
-        midpoint = 117963 if term and term == "xterm-256color" else 383
+        if term and term == "xterm-256color":
+            midpoint = 117963
+        else:
+            midpoint = 383
 
     # Each r,g or b are is scalledmulitplied by 16, e.g.
     # 0..15 -> 0..240
