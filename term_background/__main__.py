@@ -172,7 +172,7 @@ def main():
         color_fg_bg_status = "variable not set"
     else:
         color_fg_bg_status = "?? %s % color_fg_bg"
-    print(f"COLORFGBG: %s (%s)" % (color_fg_bg, color_fg_bg_status))
+    print("COLORFGBG: %s (%s)" % (color_fg_bg, color_fg_bg_status))
 
     # Check consistency
     if lc_dark_bg_status != color_fg_bg_status and not (
