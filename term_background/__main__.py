@@ -23,12 +23,13 @@ that works in POSIX shell.
 """
 
 from os import environ
+import sys
 
 # from subprocess import check_output, check_call
 
 
 def set_default_bg():
-    """Get bacground from
+    """Get background from
     default values based on the TERM environment variable
     """
     term = environ.get("TERM", None)
@@ -42,8 +43,9 @@ def is_dark_rgb(r, g, b):
     """Pass as parameters R G B values in hex
     On return, variable is_dark_bg is set
     """
+
     def scale(v):
-        return (v * 16)
+        return v * 16
 
     try:
         midpoint = int(environ.get("TERMINAL_COLOR_MIDPOINT", None))
@@ -69,6 +71,10 @@ def is_dark_rgb(r, g, b):
         return False
 
 
+DARK_COLORFGBG_VALUES = ("0;15", "0;default;15")
+LIGHT_COLORFGBG_VALUES = ("15;0", "15;default;0")
+
+
 def is_dark_color_fg_bg():
     """Consult (environment) variables LC_DARK_BG and COLORFGB
     On return, variable is_dark_bg is set"""
@@ -77,9 +83,9 @@ def is_dark_color_fg_bg():
         return dark_bg != "0"
     color_fg_bg = environ.get("COLORFGBG", None)
     if color_fg_bg:
-        if color_fg_bg in ("15;0", "15;default;0"):
+        if color_fg_bg in LIGHT_COLORFGBG_VALUES:
             return True
-        elif color_fg_bg in ("0;15", "0;default;15"):
+        elif color_fg_bg in DARK_COLORFGBG_VALUES:
             return False
     else:
         return True
@@ -141,3 +147,44 @@ def is_dark_background():
         dark_bg = set_default_bg()
     # print("XXX ", dark_bg)
     return dark_bg
+
+
+def main():
+    """Show setting for terminal darkness evironment variables
+      LC_DARK_BG and COLORFGBG, and check for consistency between the
+      settings of these variables.
+    """
+    lc_dark_bg = environ.get("LC_DARK_BG")
+    if lc_dark_bg == "0":
+        lc_dark_bg_status = "light"
+    elif lc_dark_bg is None:
+        lc_dark_bg_status = "variable not set"
+    else:
+        lc_dark_bg_status = "dark"
+    print("LC_DARK_BG: %s (%s)" % (lc_dark_bg, lc_dark_bg_status))
+
+    color_fg_bg = environ.get("COLORFGBG")
+    if color_fg_bg in LIGHT_COLORFGBG_VALUES:
+        color_fg_bg_status = "light"
+    elif color_fg_bg in DARK_COLORFGBG_VALUES:
+        color_fg_bg_status = "dark"
+    elif color_fg_bg is None:
+        color_fg_bg_status = "variable not set"
+    else:
+        color_fg_bg_status = "?? %s % color_fg_bg"
+    print(f"COLORFGBG: %s (%s)" % (color_fg_bg, color_fg_bg_status))
+
+    # Check consistency
+    if lc_dark_bg_status != color_fg_bg_status and not (
+        lc_dark_bg_status == "variable not set"
+        or color_fg_bg_status == "variable not set"
+    ):
+        print("Mismatched LC_DARK_BG and COLORFGBG; LC_DARK_BG takes precedence")
+        sys.exit(1)
+    else:
+        print("LC_DARK_BG and COLORFGBG are compatible")
+    sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()
