@@ -1,3 +1,109 @@
+2024-10-09  rocky <rocky@gnu.org>
+
+	* .editorconfig, .pre-commit-config.yaml, pyrightconfig.json,
+	term_background/version.py: Get ready for release 1.0.2
+
+2024-10-05  rocky <rocky@gnu.org>
+
+	* .gitignore, admin-tools/setup-python-2.4.sh: Admnistrivia
+
+2024-10-05  rocky <rocky@gnu.org>
+
+	* admin-tools/.gitignore: Administrivia
+
+2024-10-05  rocky <rocky@gnu.org>
+
+	* admin-tools/check-2.4-2.7-versions.sh,
+	admin-tools/check-3.0-3.2-versions.sh,
+	admin-tools/check-3.3-3.5-versions.sh,
+	admin-tools/check-3.6-3.10-versions.sh,
+	admin-tools/check-newest-versions.sh, admin-tools/merge-for-2.4.sh,
+	admin-tools/merge-for-3.0.sh, admin-tools/merge-for-3.3.sh,
+	admin-tools/merge-for-3.6.sh, admin-tools/setup-python-3.0.sh,
+	admin-tools/setup-python-3.3.sh, admin-tools/setup-python-3.6.sh: 
+	More administrivia
+
+2024-10-05  rocky <rocky@gnu.org>
+
+	* admin-tools/setup-python-2.4.sh, admin-tools/setup-python-3.0.sh,
+	admin-tools/setup-python-3.3.sh, admin-tools/setup-python-3.6.sh: 
+	Administrivia
+
+2024-09-30  rocky <rocky@gnu.org>
+
+	* admin-tools/setup-master.sh: Administrivia
+
+2024-09-07  rocky <rocky@gnu.org>
+
+	* term_background/__main__.py: Improve/add Python CLI capability? When __main__ is run, report and check environment variable
+	consistency for color settings.
+
+2024-06-17  rocky <rocky@gnu.org>
+
+	* term-background.ksh, term-background.zsh: Bump copyright on
+	changed file
+
+2024-06-17  rocky <rocky@gnu.org>
+
+	* .gitignore: More ignore
+
+2024-06-17  rocky <rocky@gnu.org>
+
+	* term-background.bash, term-background.ksh, term-background.zsh: 
+	Run shellcheck over code
+
+2024-06-17  rocky <rocky@gnu.org>
+
+	* term-background.ksh, term-background.zsh: Sync ksh and zsh code
+	from bash
+
+2024-06-17  rocky <rocky@gnu.org>
+
+	* term-background.bash: Set default bg values
+
+2024-06-17  rocky <rocky@gnu.org>
+
+	* term_background/__main__.py: Adjust midpoint value for
+	xterm-256color
+
+2024-06-17  rocky <rocky@gnu.org>
+
+	* term_background/version.py: Bump version number
+
+2021-08-07  rocky <rocky@gnu.org>
+
+	* term_background/__init__.py: Python: Import is_dark_background
+
+2021-08-07  rocky <rocky@gnu.org>
+
+	* term-background.bash: Work around semicolon in COLORFGBG
+
+2021-02-09  rocky <rocky@gnu.org>
+
+	* term-background.bash: Correct OSX osascript detection for bash
+
+2020-11-17  rocky <rocky@gnu.org>
+
+	* README.rst: Add badges
+
+2020-11-17  rocky <rocky@gnu.org>
+
+	* README.md: README.rst wins
+
+2020-11-17  rocky <rocky@gnu.org>
+
+	* README.rst: Describe main Python function: is_dark_background
+
+2020-11-11  rocky <rocky@gnu.org>
+
+	* term-background.bash, term_background/version.py: shell typo; bump
+	version
+
+2020-10-24  rocky <rocky@gnu.org>
+
+	* ChangeLog, NEWS.md, __pkginfo__.py, admin-tools/pyenv-versions: 
+	1.0.1 administrivia
+
 2020-10-24  rocky <rocky@gnu.org>
 
 	* Makefile, README.rst, term_background/__init__.py,
