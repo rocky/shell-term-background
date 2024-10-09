@@ -4,7 +4,6 @@ from term_background import (
     set_default_bg,
     is_dark_rgb,
     is_dark_color_fg_bg,
-    is_dark_background,
 )
 from os import environ
 
