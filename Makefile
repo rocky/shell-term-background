@@ -28,7 +28,7 @@ install:
 
 #: Run tests. You can set environment variable "o" for pytest options
 check:
-	py.test test $o
+	pytest test $o
 
 # Check StructuredText long description formatting
 check-rst:
