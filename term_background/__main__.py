@@ -49,7 +49,7 @@ def is_dark_rgb(r, g, b):
 
     try:
         midpoint = int(environ.get("TERMINAL_COLOR_MIDPOINT", None))
-    except:
+    except Exception:
         midpoint = None
         pass
     if not midpoint:
