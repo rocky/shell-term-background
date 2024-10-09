@@ -3,6 +3,10 @@ requires = [
     "setuptools",
 ]
 [project]
+authors = [
+   {name = "Rocky Bernstein"},
+   {email = "rb@dustyfeet.com"}
+]
 name = "term-background"
 description = "Determinte if a shell has a light or dark background"
 dependencies = []
