@@ -1,4 +1,8 @@
-|Pypi Installs| |Latest Version| |Supported Python Versions|
+|Pypi Installs| |Supported Python Versions|
+
+|packagestatus|
+
+{
 
 The Python module contained  is part of a broader set of scripts
 
@@ -9,8 +13,7 @@ From Python you can call ``term_background.is_dark_background()`` which returns 
 
 The heuristics used is to try to query the background color using an `xterm control sequence <https://www.talisman.org/~erlkonig/documents/xterm-color-queries/>`_.
 
-Many, but not all, terminals support this query. So as a fallback we query environment variable ``COLORFGBG`` and failing this we use some
-defaults for some known terminals set from the ``TERM`` environment variable. OSX has its own way of querying characteristics so we use that too if you are running on that OS.
+Many, but not all, terminals support this query. So as a fallback we query environment variable ``COLORFGBG`` and failing this we use some defaults for some known terminals set from the ``TERM`` environment variable. OSX has its own way of querying characteristics so we use that too if you are running on that OS.
 
 When we can get pixel intensities of red, blue, and green values of the background, we can use that determine light and dark based the combined sum: zero values indicate an absense of a particular color and compare that with the values of the foreground.
 
@@ -20,7 +23,6 @@ Many thanks to Thomas Dickey, Egmont Koblinger, and Gilles, for explanations (an
 
 Of course bugs and lacuna in this code are mine.
 
-.. |Latest Version| image:: https://badge.fury.io/py/term-background.svg
-		 :target: https://badge.fury.io/py/term-background
 .. |Pypi Installs| image:: https://pepy.tech/badge/term-background
 .. |Supported Python Versions| image:: https://img.shields.io/pypi/pyversions/term-background.svg
+.. |packagestatus| image:: https://repology.org/badge/vertical-allrepos/python:term-background.svg :target: https://repology.org/project/python:term-background/versions
