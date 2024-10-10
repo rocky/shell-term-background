@@ -25,5 +25,4 @@ Of course bugs and lacuna in this code are mine.
 
 .. |Pypi Installs| image:: https://pepy.tech/badge/term-background
 .. |Supported Python Versions| image:: https://img.shields.io/pypi/pyversions/term-background.svg
-.. |packagestatus| image:: https://repology.org/badge/vertical-allrepos/python:term-background.svg
-		 :target: https://repology.org/project/python:term-background/versions
+.. |packagestatus| image:: https://repology.org/badge/vertical-allrepos/python:term-background.svg :target: https://repology.org/project/python:term-background/versions
