@@ -49,8 +49,8 @@ echo === $pyversion ===
 # Tarballs can get created from the above setup, so make sure to remove them since we want
 # the tarball from master.
 
-tarball=dist/${PACKAGE}-$__version__-tar.gz
+tarball=dist/${PYMODULE_NAME}-$__version__-tar.gz
 if [[ -f $tarball ]]; then
-    rm -v dist/${PACKAGE}-$__version__-tar.gz
+    rm -v dist/${PYMOUDLE_NAME}-$__version__-tar.gz
 fi
 finish
