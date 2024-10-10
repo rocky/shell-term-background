@@ -1,5 +1,6 @@
 #!/bin/bash
 PACKAGE=term-background
+PYMODULE_NAME=term_background
 
 # FIXME put some of the below in a common routine
 function finish {
@@ -18,7 +19,7 @@ if ! source ./setup-master.sh ; then
 fi
 
 cd ..
-source $PACKAGE/version.py
+source $PYMOUDLE_NAME/version.py
 echo $__version__
 
 for pyversion in $PYVERSIONS; do
@@ -42,9 +43,9 @@ for pyversion in $PYVERSIONS; do
 	    # For PyPy, remove the what is after the dash, e.g. pypy37-none-any.whl instead of pypy37-7-none-any.whl
 	    first_two=${first_two%-*}
 	fi
-	mv -v dist/${PACKAGE}-$__version__-{py3,$first_two}-none-any.whl
+	mv -v dist/${PYMODULE_NAME}-$__version__-{py3,$first_two}-none-any.whl
     else
-	mv -v dist/${PACKAGE}-$__version__-{py3,py$first_two}-none-any.whl
+	mv -v dist/${PYMODULE_NAME}-$__version__-{py3,py$first_two}-none-any.whl
     fi
     echo === $pyversion ===
 done

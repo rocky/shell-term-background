@@ -1,5 +1,6 @@
 #!/bin/bash
 PACKAGE=term-background
+PYMODULE_NAME=term_background
 
 # FIXME put some of the below in a common routine
 function finish {
@@ -17,7 +18,7 @@ if ! source ./setup-python-2.4.sh ; then
 fi
 
 cd ..
-source $PACKAGE/version.py
+source $PYMODULE_NAME/version.py
 if [[ ! -n $__version__ ]]; then
     echo "You need to set __version__ first"
     exit 1
