@@ -1,5 +1,6 @@
 #!/bin/bash
 PACKAGE=term-background
+PYMODULE_NAME=term_background
 
 # FIXME put some of the below in a common routine
 function finish {
@@ -18,7 +19,7 @@ if ! source ./setup-python-3.6.sh ; then
 fi
 
 cd ..
-source $PACKAGE/version.py
+source $PYMODULE_NAME/version.py
 if [[ ! -n $__version__ ]]; then
     echo "You need to set __version__ first"
     exit 1
@@ -46,17 +47,17 @@ for pyversion in $PYVERSIONS; do
 	    # For PyPy, remove the what is after the dash, e.g. pypy37-none-any.whl instead of pypy37-7-none-any.whl
 	    first_two=${first_two%-*}
 	fi
-	mv -v dist/${PACKAGE}-$__version__-{py3,$first_two}-none-any.whl
+	mv -v dist/${PYMODULE_NAME}-$__version__-{py3,$first_two}-none-any.whl
     else
-	mv -v dist/${PACKAGE}-$__version__-{py3,py$first_two}-none-any.whl
+	mv -v dist/${PYMODULE_NAME}-$__version__-{py3,py$first_two}-none-any.whl
     fi
     echo === $pyversion ===
 done
 
 python ./setup.py sdist
 
-tarball=dist/${PACKAGE}-${__version__}.tar.gz
+tarball=dist/${PYMODULE_NAME}-${__version__}.tar.gz
 if [[ -f $tarball ]]; then
-    mv -v $tarball dist/${PACKAGE}_36-${__version__}.tar.gz
+    mv -v $tarball dist/${PYMODULE_NAME}_36-${__version__}.tar.gz
 fi
 finish
