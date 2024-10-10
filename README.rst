@@ -1,4 +1,8 @@
-|Pypi Installs| |Latest Version| |Supported Python Versions|
+|Pypi Installs| |Supported Python Versions|
+
+|packagestatus|
+
+{
 
 The Python module contained  is part of a broader set of scripts
 
@@ -19,6 +23,7 @@ Many thanks to Thomas Dickey, Egmont Koblinger, and Gilles, for explanations (an
 
 Of course bugs and lacuna in this code are mine.
 
-.. |Latest Version| image:: https://badge.fury.io/py/term-background.svg :target: https://badge.fury.io/py/term-background
 .. |Pypi Installs| image:: https://pepy.tech/badge/term-background
 .. |Supported Python Versions| image:: https://img.shields.io/pypi/pyversions/term-background.svg
+.. |packagestatus| image:: https://repology.org/badge/vertical-allrepos/python:term-background.svg
+		 :target: https://repology.org/project/python:term-background/versions
