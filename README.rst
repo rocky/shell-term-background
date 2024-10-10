@@ -19,7 +19,6 @@ Many thanks to Thomas Dickey, Egmont Koblinger, and Gilles, for explanations (an
 
 Of course bugs and lacuna in this code are mine.
 
-.. |Latest Version| image:: https://badge.fury.io/py/term-background.svg
-		 :target: https://badge.fury.io/py/term-background
+.. |Latest Version| image:: https://badge.fury.io/py/term-background.svg :target: https://badge.fury.io/py/term-background
 .. |Pypi Installs| image:: https://pepy.tech/badge/term-background
 .. |Supported Python Versions| image:: https://img.shields.io/pypi/pyversions/term-background.svg
