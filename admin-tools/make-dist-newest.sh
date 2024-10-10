@@ -19,7 +19,7 @@ if ! source ./setup-master.sh ; then
 fi
 
 cd ..
-source $PYMOUDLE_NAME/version.py
+source $PYMODULE_NAME/version.py
 echo $__version__
 
 for pyversion in $PYVERSIONS; do
