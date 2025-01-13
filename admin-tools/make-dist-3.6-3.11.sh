@@ -11,7 +11,7 @@ cd $(dirname ${BASH_SOURCE[0]})
 shell_term_background_owd=$(pwd)
 trap finish EXIT
 
-if ! source ./pyenv-3.6-3.10-versions ; then
+if ! source ./pyenv-3.6-3.11-versions ; then
     exit $?
 fi
 if ! source ./setup-python-3.6.sh ; then

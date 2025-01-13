@@ -4,6 +4,6 @@ term_background_33_owd=$(pwd)
 cd $(dirname ${BASH_SOURCE[0]})
 (cd .. && PYTHON_VERSION=3.3 && pyenv local $PYTHON_VERSION)
 if . ./setup-python-3.3.sh; then
-    git merge python-3.6-to-3.10
+    git merge python-3.6-to-3.11
 fi
 cd $term_background_33_owd
