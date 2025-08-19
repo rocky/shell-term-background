@@ -2,7 +2,7 @@
 # ^^^^^^^^^^^^ Use env rather than assume we've got /bin/bash.
 # This works better on OSX where /bin/bash is brain dead.
 
-#   Copyright (C) 2019-2020, Rocky Bernstein <rocky@gnu.org>
+#   Copyright (C) 2019-2020, 2025 Rocky Bernstein <rocky@gnu.org>
 #   This program is free software; you can redistribute it and/or
 #   modify it under the terms of the GNU General Public License as
 #   published by the Free Software Foundation; either version 2, or
@@ -19,6 +19,12 @@
 #   MA 02111 USA.
 
 # Try to determine if we have dark or light terminal background
+
+# This file is copied from
+# https://github.com/rocky/bash-term-background If you have problems
+# with this script open an issue there.  Note: I use github project
+# ratings to help me determine if project issues are worth fixing when
+# (as usually the case), there are several issues I could be working on.
 
 typeset -i success=0
 typeset    method="xterm control"
@@ -76,9 +82,9 @@ is_dark_rgb() {
 # On return, variable is_dark_bg is set
 is_dark_rgb_from_bg() {
   midpoint=32767
-  bg_r=$1
-  bg_g=$2
-  bg_b=$3
+  bg_r=${1%,}
+  bg_g=${2%,}
+  bg_b=${3%,}
   typeset -i a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
   if (( a_bg < midpoint )); then
     is_dark_bg=1
