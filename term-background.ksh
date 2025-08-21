@@ -1,7 +1,7 @@
 #!/usr/bin/env ksh
 # ^^^^^^^^^^^^ Use env rather ksh installed somewhere
 
-#   Copyright (C) 2019-2020, 2023-2024 Rocky Bernstein <rocky@gnu.org>
+#   Copyright (C) 2019-2020, 2023-2025 Rocky Bernstein <rocky@gnu.org>
 #   This program is free software; you can redistribute it and/or
 #   modify it under the terms of the GNU General Public License as
 #   published by the Free Software Foundation; either version 2, or
@@ -81,9 +81,9 @@ is_dark_rgb() {
 # On return, variable is_dark_bg is set
 is_dark_rgb_from_bg() {
   midpoint=32767
-  bg_r=$1
-  bg_g=$2
-  bg_b=$3
+  bg_r=${1%,}
+  bg_g=${2%,}
+  bg_b=${3%,}
   typeset -i a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
   if (( a_bg < midpoint )); then
     is_dark_bg=1
@@ -217,7 +217,7 @@ if (( 3711 < VTE_VERSION )) && [[ -z "$COLORFGBG" ]]; then
   unset x fg bg avg_RGB_fg avg_RGB_bg
 fi
 
-if [[ $(uname -s) =~ darwin ]] ; then
+if [[ $(uname -s) =~ [dD]arwin ]] ; then
     osx_get_terminal_fg_bg
 fi
 
