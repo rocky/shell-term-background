@@ -215,7 +215,7 @@ if (( 3711 < VTE_VERSION )) && [[ -z "$COLORFGBG" ]]; then
   unset x fg bg avg_RGB_fg avg_RGB_bg
 fi
 
-if [[ $(uname -s) =~ darwin ]] ; then
+if [[ $(uname -s) =~ [dD]arwin ]] ; then
     osx_get_terminal_fg_bg
 fi
 

@@ -81,9 +81,9 @@ is_dark_rgb() {
 # On return, variable is_dark_bg is set
 is_dark_rgb_from_bg() {
   midpoint=32767
-  bg_r=$1
-  bg_g=$2
-  bg_b=$3
+  bg_r=${1%,}
+  bg_g=${2%,}
+  bg_b=${3%,}
   typeset -i a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
   if (( a_bg < midpoint )); then
     is_dark_bg=1
@@ -217,7 +217,7 @@ if (( 3711 < VTE_VERSION )) && [[ -z "$COLORFGBG" ]]; then
   unset x fg bg avg_RGB_fg avg_RGB_bg
 fi
 
-if [[ $(uname -s) =~ darwin ]] ; then
+if [[ $(uname -s) =~ [dD]arwin ]] ; then
     osx_get_terminal_fg_bg
 fi
 
