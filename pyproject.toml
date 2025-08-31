@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "setuptools",
+    "setuptools>=70.0.0",
 ]
 [project]
 authors = [
@@ -8,7 +8,7 @@ authors = [
    {email = "rb@dustyfeet.com"}
 ]
 name = "term-background"
-description = "Determinte if a shell has a light or dark background"
+description = "Determine if a shell has a light or dark background"
 dependencies = []
 readme = "README.rst"
 license = {text = "GPL"}
