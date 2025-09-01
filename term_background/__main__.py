@@ -183,6 +183,12 @@ def main():
         sys.exit(1)
     else:
         print("LC_DARK_BG and COLORFGBG are compatible")
+        no_color = environ.get("NO_COLOR", False)
+        if no_color:
+            print("NO_COLOR is set to %s. This may take precedence and colors turned off." % no_color)
+        else:
+            print("NO_COLOR is not set.")
+
     sys.exit(0)
 
 
