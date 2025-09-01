@@ -11,14 +11,13 @@ name = "term-background"
 description = "Determine if a shell has a light or dark background"
 dependencies = []
 readme = "README.rst"
-license = {text = "GPL"}
+license = {text = "GPL3"}
 maintainers = [
     {name = "Rocky Bernstein"},
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Programming Language :: Python :: 2.4",

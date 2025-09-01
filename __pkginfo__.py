@@ -1,5 +1,3 @@
-import sys
-
 import os.path as osp
 
 author = "Rocky Bernstein"
