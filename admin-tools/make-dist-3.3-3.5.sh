@@ -19,7 +19,7 @@ if ! source ./setup-python-3.3.sh ; then
 fi
 
 cd ..
-source $PACKAGE/version.py
+source $PYMODULE_NAME/version.py
 if [[ ! -n $__version__ ]]; then
     echo "You need to set __version__ first"
     exit 1
