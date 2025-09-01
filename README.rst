@@ -1,11 +1,16 @@
 |Pypi Installs| |Supported Python Versions|
 
-The Python module contained  is part of a broader set of scripts
+The Python module contained is part of a broader set of scripts
 
 For the shell scripts, if you source this from a shell session it will set and export ``COLORFGBG`` to ``0;15`` for dark backgrounds and ``15;0`` for light backgrounds which is
 a convention used by some programs. Since I find this a little arcane, the program also sets and exports ``LC_DARK_BG`` to 1 for dark backgrounds and 0 for light. The ``LC_`` (locale) assists in some ssh configurations which often will let environment variables with that prefix get passed along and set to a remote ssh session.
 
 From Python, you can call ``term_background.is_dark_background()`` which returns a ``True`` if we think the background is dark.
+
+To see if you environment variables are color consistent, run::
+
+  python -m term_background
+
 
 The heuristics used is to try to query the background color using an `xterm control sequence <https://www.talisman.org/~erlkonig/documents/xterm-color-queries/>`_.
 
