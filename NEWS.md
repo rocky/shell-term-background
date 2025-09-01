@@ -1,3 +1,14 @@
+1.0.3
+-----
+
+Sept 1. 2025
+
+Adjust MacOS terminal detection, especially in `zsh` and `ksh`.
+
+Report on `NO_COLOR` presence in main Python program.
+
+Support up to Python 3.13 (which needs new pyproject.toml packaging).
+
 1.0.2
 -----
 
