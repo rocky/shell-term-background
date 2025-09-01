@@ -7,9 +7,11 @@ a convention used by some programs. Since I find this a little arcane, the progr
 
 From Python, you can call ``term_background.is_dark_background()`` which returns a ``True`` if we think the background is dark.
 
-To see if your environment variables are color consistent, run::
+To see if your environment variables are color consistent, run:
 
-  python -m term_background
+.. code::
+
+    $ python -m term_background
 
 
 The heuristics used is to try to query the background color using an `xterm control sequence <https://www.talisman.org/~erlkonig/documents/xterm-color-queries/>`_.

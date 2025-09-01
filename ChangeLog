@@ -1,6 +1,103 @@
+2025-09-01  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.rst: Update README.rst
+
+2025-09-01  rocky <rocky@gnu.org>
+
+	* README.rst, term_background/__init__.py,
+	term_background/__main__.py: Go over README.rst and some lint
+
+2025-09-01  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #13 from rocky/zsh-and-osascript-and-testing Start testing, and start adjusting zsh code
+
+2025-09-01  rocky <rocky@gnu.org>
+
+	* term-background.bash, test/shunit2,
+	test/test_term_background.bash, test/test_term_background.zsh: Start
+	testing, and start adjusting zsh code
+
+2025-08-31  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #12 from mmatera/improve_pyproject Update pyproject.toml
+
+2025-08-31  Juan Mauricio Matera <matera@fisica.unlp.edu.ar>
+
+	* setup.py: Update setup.py distutils could also be the problem...
+
+2025-08-31  Juan Mauricio Matera <matera@fisica.unlp.edu.ar>
+
+	* pyproject.toml: Update pyproject.toml
+
+2025-08-20  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #11 from rocky/strip-commas We need to strip off trailing ","s on MacOSX
+
+2025-08-19  rocky <rocky@gnu.org>
+
+	* term-background.bash, term-background.ksh, term-background.zsh: We
+	need to strip off trailing ","s on MacOSX Thanks to Bruce Lucas for help here.
+
+2025-01-13  rocky <rocky@gnu.org>
+
+	* admin-tools/{check-3.6-3.10-versions.sh =>
+	check-3.6-3.11-versions.sh}, admin-tools/{make-dist-3.6-3.10.sh =>
+	make-dist-3.6-3.11.sh}, admin-tools/merge-for-3.3.sh,
+	admin-tools/{pyenv-3.6-3.10-versions => pyenv-3.6-3.11-versions},
+	admin-tools/pyenv-newest-versions, admin-tools/setup-python-3.6.sh: 
+	Put 3.11 in the branch with 3.6 3.11 build works with setuptools
+
+2025-01-11  rocky <rocky@gnu.org>
+
+	* .github/ISSUE_TEMPLATE/bug-report.md,
+	.github/ISSUE_TEMPLATE/config.yml,
+	.github/ISSUE_TEMPLATE/feature-request.md: Add issue/feature
+	templates
+
+2024-10-14  rocky <rocky@gnu.org>
+
+	* admin-tools/setup-master.sh, term_background/version.py: 
+	Administrivia: default to 3.13 Bump to dev
+
+2024-10-13  rocky <rocky@gnu.org>
+
+	* .github/workflows/macos.yml, .github/workflows/ubuntu.yml,
+	.github/workflows/windows.yml: Test on 3.13
+
+2024-10-13  rocky <rocky@gnu.org>
+
+	* __pkginfo__.py, admin-tools/pyenv-newest-versions: Note that 3.13
+	works here
+
+2024-10-10  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.rst: Update README.rst
+
 2024-10-09  rocky <rocky@gnu.org>
 
-	* .editorconfig, .pre-commit-config.yaml, pyrightconfig.json,
+	* Makefile, README.rst, admin-tools/make-dist-2.4-2.7.sh,
+	admin-tools/make-dist-3.0-3.2.sh, admin-tools/make-dist-3.3-3.5.sh,
+	admin-tools/make-dist-3.6-3.10.sh, admin-tools/make-dist-newest.sh,
+	admin-tools/make-dist.sh, admin-tools/pyenv-3.6-3.10-versions,
+	admin-tools/pyenv-versions, pyproject.toml,
+	test/test_term_background.py: Get ready for release 1.0.2
+
+2024-10-09  rocky <rocky@gnu.org>
+
+	* NEWS.md, admin-tools/pyenv-2.4-2.7-versions,
+	admin-tools/pyenv-3.0-3.2-versions,
+	admin-tools/pyenv-3.3-3.5-versions,
+	admin-tools/pyenv-3.6-3.10-versions,
+	admin-tools/pyenv-newest-versions: Get ready for release 1.0.2
+
+2024-10-09  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #9 from rocky/workflows-CI Workflows ci
+
+2024-10-09  rocky <rocky@gnu.org>
+
+	* .editorconfig, .pre-commit-config.yaml, ChangeLog,
+	ChangeLog-spell-corrected.diff, pyrightconfig.json,
 	term_background/version.py: Get ready for release 1.0.2
 
 2024-10-05  rocky <rocky@gnu.org>
