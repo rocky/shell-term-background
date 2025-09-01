@@ -1,11 +1,23 @@
 """
-  Copyright (c) 2020 by Rocky Bernstein
+Copyright (c) 2020, 2025 by Rocky Bernstein
 """
+
 __docformat__ = "restructuredtext"
 
-import sys
-if not '-m' in sys.argv:
-    from term_background.__main__ import *
 
-from term_background.__main__ import is_dark_background
+from term_background.__main__ import (
+    is_dark_background,
+    is_dark_color_fg_bg,
+    is_dark_rgb,
+    set_default_bg,
+)
 from term_background.version import __version__
+
+__all__ = [
+    "__version__",
+    "is_dark_background",
+    "is_dark_background",
+    "is_dark_color_fg_bg",
+    "is_dark_rgb",
+    "set_default_bg",
+]
