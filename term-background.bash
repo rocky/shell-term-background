@@ -2,7 +2,7 @@
 # ^^^^^^^^^^^^ Use env rather than assume we've got /bin/bash.
 # This works better on OSX where /bin/bash is brain dead.
 
-#   Copyright (C) 2019-2020, Rocky Bernstein <rocky@gnu.org>
+#   Copyright (C) 2019-2020, 2025 Rocky Bernstein <rocky@gnu.org>
 #   This program is free software; you can redistribute it and/or
 #   modify it under the terms of the GNU General Public License as
 #   published by the Free Software Foundation; either version 2, or
@@ -19,6 +19,12 @@
 #   MA 02111 USA.
 
 # Try to determine if we have dark or light terminal background
+
+# This file is copied from
+# https://github.com/rocky/bash-term-background If you have problems
+# with this script open an issue there.  Note: I use github project
+# ratings to help me determine if project issues are worth fixing when
+# (as usually the case), there are several issues I could be working on.
 
 typeset -i success=0
 typeset    method="xterm control"
@@ -72,19 +78,27 @@ is_dark_rgb() {
   fi
 }
 
+remove_comma_and_quote() {
+    bg_color="${1%,}" # remove trailing comma
+    bg_color="${bg_color#\"}" # remove leading quote
+    bg_color="${bg_color%\"}" # remove trailing quote
+    echo ${bg_color}
+}
+
 # NOTE: We could have FG=#403020 BG=#203040 and tie
 # On return, variable is_dark_bg is set
 is_dark_rgb_from_bg() {
-  midpoint=32767
-  bg_r=$1
-  bg_g=$2
-  bg_b=$3
-  typeset -i a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
-  if (( a_bg < midpoint )); then
-    is_dark_bg=1
-  else
-    is_dark_bg=0
-  fi
+    midpoint=32767
+
+    bg_r=$(remove_comma_and_quote $1)
+    bg_g=$(remove_comma_and_quote $2)
+    bg_b=$(remove_comma_and_quote $3)
+    typeset -i a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
+    if (( a_bg < midpoint )); then
+	is_dark_bg=1
+    else
+	is_dark_bg=0
+    fi
 }
 
 # Consult (environment) variable COLORFGB
@@ -171,19 +185,19 @@ xterm_compatible_fg_bg() {
 
 # From a comment left by user "duthen" in my StackOverflow answer cited above.
 osx_get_terminal_fg_bg() {
-  if [[ -n $COLORFGBG ]]; then
-    method="COLORFGBG"
-    is_dark_colorfgbg
-  else
-    # shellcheck disable=SC2207
-    RGB_bg=($(osascript -e 'tell application "Terminal" to get the background color of the current settings of the selected tab of front window'))
-    retsts=$?
-    # typeset -p RGB_bg
-    ((retsts != 0)) && return 1
-    is_dark_rgb_from_bg "${RGB_bg[@]}"
-    method="OSX osascript"
-    success=1
-  fi
+    if [[ -n $COLORFGBG ]]; then
+	method="COLORFGBG"
+	is_dark_colorfgbg
+    else
+	# shellcheck disable=SC2207
+	RGB_bg=($(osascript -e 'tell application "Terminal" to get the background color of the current settings of the selected tab of front window'))
+	retsts=$?
+	# typeset -p RGB_bg
+	((retsts != 0)) && return 1
+	is_dark_rgb_from_bg "${RGB_bg[@]}"
+	method="OSX osascript"
+	success=1
+    fi
 }
 
 typeset -i success=0
