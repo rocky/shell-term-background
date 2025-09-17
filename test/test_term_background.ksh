@@ -2,8 +2,7 @@
 # -*- shell-script -*-
 
 PS4='(${.sh.file}:${LINENO}): ${.sh.fun} - [${.sh.subshell}]'
-mydir=$(dirname ${.sh.file})
-fulldir=$(readlink -f $mydir)
+fulldir=$(dirname ${.sh.file})
 cd $fulldir/..
 
 if ! source ./term-background.ksh ; then
