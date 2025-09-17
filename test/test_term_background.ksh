@@ -2,9 +2,11 @@
 # -*- shell-script -*-
 
 PS4='(${.sh.file}:${LINENO}): ${.sh.fun} - [${.sh.subshell}]'
-cd $(dirname ${.sh.file})
+mydir=$(dirname ${.sh.file})
+fulldir=$(readlink -f $mydir)
+cd $fulldir/..
 
-if ! source ../term-background.ksh ; then
+if ! source ./term-background.ksh ; then
     exit $?
 fi
 
@@ -20,5 +22,6 @@ test_osascript_handling()
     assertEquals 1 $is_dark_bg
 }
 
+cd $fulldir
 SHUNIT_PARENT=$0
 . ./shunit2

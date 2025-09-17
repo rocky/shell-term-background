@@ -9,7 +9,38 @@ PYTHON ?= python3
 PIP ?= pip3
 RM  ?= rm
 
-.PHONY: all build check clean develop dist doc pytest sdist test rmChangeLog
+# The output is stored in the ZSH_PATH variable.
+
+SHELLS =
+
+BASH_PATH := $(shell command -v bash)
+ifneq ($(strip $(BASH_PATH)),)
+    SHELLS += $(BASH_PATH)
+endif
+
+ZSH_PATH := $(shell command -v zsh)
+ifneq ($(strip $(ZSH_PATH)),)
+    SHELLS += $(ZSH_PATH)
+endif
+
+KSH_PATH := $(shell command -v ksh)
+ifneq ($(strip $(KSH_PATH)),)
+    SHELLS += $(KSH_PATH)
+endif
+
+.PHONY: \
+   all \
+   build \
+   check \
+   clean develop \
+   dist \
+   doc \
+   python-check \
+   pytest \
+   rmChangeLog \
+   sdist \
+   shunit2-check \
+   test
 
 #: Default target - same as "develop"
 all: develop
@@ -26,9 +57,19 @@ develop:
 install:
 	$(PYTHON) setup.py install
 
-#: Run tests. You can set environment variable "o" for pytest options
-check:
+#: Run all check (Python and Shell)
+check: python-check shunit2-check
+
+#: Run Python tests. You can set environment variable "o" for pytest options
+python-check:
 	$(PYTHON) -m pytest test $o
+
+#: Run Shell tests. You can set environment variable "o" for pytest options
+shunit2-check:
+	@for shell in $(SHELLS); do \
+	shell_basename=$${shell##*/}; \
+        $$shell test/*.$${shell_basename} $o; \
+	done
 
 # Check StructuredText long description formatting
 check-rst:
