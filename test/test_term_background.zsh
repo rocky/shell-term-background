@@ -2,9 +2,10 @@
 # -*- shell-script -*-
 
 PS4='(%x:%I): [%?] zsh+'
-cd $(dirname ${0:A})
+fulldir=$(dirname ${0:A})
+cd $fulldir/..
 
-if ! source ../term-background.zsh ; then
+if ! source ./term-background.zsh ; then
     exit $?
 fi
 
@@ -21,4 +22,5 @@ test_osascript_handling()
 }
 
 SHUNIT_PARENT=$0
+cd $fulldir
 . ./shunit2

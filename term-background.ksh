@@ -68,8 +68,8 @@ is_dark_rgb() {
   bg_r=${4:-256}
   bg_g=${5:-256}
   bg_b=${6:-256}
-  a_fg=$(($fg_r + $fg_g + fg_b))
-  a_bg=$(($bg_r + $bg_g + $bg_b))
+  a_fg=$((fg_r + fg_g + fg_b))
+  a_bg=$((bg_r + bg_g + bg_b))
   if [[ $a_fg -gt $a_bg ]]; then
     is_dark_bg=1
   else

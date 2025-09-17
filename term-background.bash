@@ -66,11 +66,11 @@ is_dark_rgb() {
   fg_r=${1:-0}
   fg_g=${2:-0}
   fg_b=${3:-0}
-  bg_r=${4:-FF}
-  bg_g=${5:-FF}
-  bg_b=${6:-FF}
-  a_fg=$((16#"$fg_r" + 16#"$fg_g" + 16#"$fg_b"))
-  a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
+  bg_r=${4:-255}
+  bg_g=${5:-255}
+  bg_b=${6:-255}
+  a_fg=$((fg_r + fg_g + fg_b))
+  a_bg=$((bg_r + bg_g + bg_b))
   if [[ $a_fg -gt $a_bg ]]; then
     is_dark_bg=1
   else
@@ -93,7 +93,7 @@ is_dark_rgb_from_bg() {
     bg_r=$(remove_comma_and_quote $1)
     bg_g=$(remove_comma_and_quote $2)
     bg_b=$(remove_comma_and_quote $3)
-    typeset -i a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
+    typeset -i a_bg=$((bg_r + bg_g + bg_b))
     if (( a_bg < midpoint )); then
 	is_dark_bg=1
     else
