@@ -23,8 +23,8 @@ cd ..
 source $PYMODULE_NAME/version.py
 echo $__version__
 pyenv local 3.13
+
 rm -fr build
-python setup.py bdist_wheel --universal
-mv -v dist/${PYMODULE_NAME}-${__version__}-{py2.,}py3-none-any.whl
-python ./setup.py sdist
+pip wheel --wheel-dir=dist .
+python -m build --sdist
 finish

@@ -11,7 +11,7 @@ name = "term-background"
 description = "Determine if a shell has a light or dark background"
 dependencies = []
 readme = "README.rst"
-license = {text = "GPL3"}
+license = "GPL-3.0-or-later"
 maintainers = [
     {name = "Rocky Bernstein"},
 ]
