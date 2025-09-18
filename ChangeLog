@@ -1,3 +1,33 @@
+2025-09-18  rocky <rocky@gnu.org>
+
+	* term_background/version.py: Get ready for release 1.0.4
+
+2025-09-18  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.rst: Update README.rst
+
+2025-09-18  rocky <rocky@gnu.org>
+
+	* README.rst: Note NO_COLOR
+
+2025-09-17  rocky <rocky@gnu.org>
+
+	* test/test_term_background.ksh: Minor tweak
+
+2025-09-17  rocky <rocky@gnu.org>
+
+	* Makefile, term-background.bash, term-background.ksh,
+	term-background.zsh, test/test_term_background.bash,
+	test/test_term_background.ksh, test/test_term_background.zsh: Use
+	Decimal in all midpoints; test POSIX shells
+
+2025-09-01  rocky <rocky@gnu.org>
+
+	* ChangeLog, NEWS.md, README.rst, __pkginfo__.py,
+	admin-tools/make-dist-3.0-3.2.sh, admin-tools/make-dist-3.3-3.5.sh,
+	admin-tools/make-dist-newest.sh, pyproject.toml,
+	term_background/version.py: Get ready for release 1.0.3
+
 2025-09-01  R. Bernstein <rocky@users.noreply.github.com>
 
 	* README.rst: Update README.rst
