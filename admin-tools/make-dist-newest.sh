@@ -27,5 +27,4 @@ pyenv local 3.13
 rm -fr build
 pip wheel --wheel-dir=dist .
 python -m build --sdist
->>>>>>> master
 finish
