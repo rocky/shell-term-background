@@ -83,8 +83,8 @@ rmChangeLog:
 	$(RM) ChangeLog || true
 
 #: Create source tarball
-sdist: check-rst
-	$(PYTHON) ./setup.py sdist
+dist:
+	./admin-tools/make-dist-newest.sh
 
 #: Create a ChangeLog from git via git log and git2cl
 ChangeLog: rmChangeLog
