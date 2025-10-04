@@ -58,6 +58,6 @@ python ./setup.py sdist
 
 tarball=dist/${PYMODULE_NAME}-${__version__}.tar.gz
 if [[ -f $tarball ]]; then
-    mv -v $tarball dist/${PYMODULE_NAME}_36-${__version__}.tar.gz
+    mv -v $tarball dist/${PACKAGE}_36-${__version__}.tar.gz
 fi
 finish
