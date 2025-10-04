@@ -71,8 +71,8 @@ def is_dark_rgb(r, g, b):
         return False
 
 
-DARK_COLORFGBG_VALUES = ("0;15", "0;default;15")
-LIGHT_COLORFGBG_VALUES = ("15;0", "15;default;0")
+LIGHT_COLORFGBG_VALUES = ("0;15", "0;default;15")
+DARK_COLORFGBG_VALUES = ("15;0", "15;default;0")
 
 
 def is_dark_color_fg_bg():
