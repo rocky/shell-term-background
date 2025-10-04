@@ -83,7 +83,7 @@ is_dark_rgb() {
 
   # Check if any of the R, G, or B values contain hex letters.
   # If so, convert to decimal.
-  if [[ "$fb_r" =~ [a-fA-F] || "$fb_g" =~ [a-fA-F] || "$fg_b" =~ [a-fA-F] ]]; then
+  if [[ "$fg_r" =~ [a-fA-F] || "$fg_g" =~ [a-fA-F] || "$fg_b" =~ [a-fA-F] ]]; then
     a_fg=$((16#"$fg_r" + 16#"$fg_g" + 16#"$fg_b"))
     a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
   else

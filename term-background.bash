@@ -84,7 +84,14 @@ is_dark_rgb() {
 
   # Check if any of the R, G, or B values contain hex letters.
   # If so, convert to decimal.
-  if [[ "$fb_r" =~ [a-fA-F] || "$fb_g" =~ [a-fA-F] || "$fg_b" =~ [a-fA-F] ]]; then
+  if [[ "$fg_r" =~ [a-fA-F] || "$fg_g" =~ [a-fA-F] || "$fg_b" =~ [a-fA-F] ]]; then
+    a_fg=$((16#"$fg_r" + 16#"$fg_g" + 16#"$fg_b"))
+    a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
+  else
+    a_fg=$((fg_r + fg_g + fg_b))
+    a_bg=$((bg_r + bg_g + bg_b))
+  fi
+  if [[ $bg_r =~ [a-fA-F] || "$fb_g" =~ [a-fA-F] || "$fg_b" =~ [a-fA-F] ]]; then
     a_fg=$((16#"$fg_r" + 16#"$fg_g" + 16#"$fg_b"))
     a_bg=$((16#"$bg_r" + 16#"$bg_g" + 16#"$bg_b"))
   else
@@ -198,15 +205,17 @@ csc_compatible_fg_bg() {
   stty -echo 2>/dev/null
 
   # Issue CSI (Operating System Command) "996n" to get light-or-dark style.
-  echo -ne '\e[?996n\a'
+  # Send CSI query to the terminal
+  echo -ne '\e[?996n\a' > $(tty)
 
-  # Read back in terminal program reporting its CSI 996 value.
-  IFS=: read -t 0.1 -d $'\a' term_mode_indicator
+  # Read response from the terminal
+  IFS=: read -t 0.3 -d $'\a' theme_mode_indicator < $(tty)
 
   # Turn TTY back on [
   stty echo 2>/dev/null
 
-  [[ -z $theme_mode_indicator ]] && return 1
+  typeset -p theme_mode_indicator
+  [[ -z $theme_mode_indicator ]] && return 0
 
   # Convert to array
   case $theme_mode_indicator in
@@ -356,12 +365,12 @@ if ((!success)); then
 	case $TERM in
 	    xterm* | gnome | rxvt* | linux | contour )
 		typeset -a RGB_fg RGB_bg
-		# if [[ $xterm_osc_done -eq 0 ]]; then
-		#     if xterm_compatible_fg_bg; then
-		# 	is_dark_rgb "${RGB_fg[@]}" "${RGB_bg[@]}"
-		#     fi
-		#     success=1
-		# fi
+		if [[ $xterm_osc_done -eq 0 ]]; then
+		    if xterm_compatible_fg_bg; then
+			is_dark_rgb "${RGB_fg[@]}" "${RGB_bg[@]}"
+		    fi
+		    success=1
+		fi
 		;;
 	    *) ;;
 	esac
