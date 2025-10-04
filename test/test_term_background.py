@@ -36,9 +36,9 @@ def test_is_dark_fg_bg():
     environ["LC_DARK_BG"] = "0"
     assert not is_dark_color_fg_bg()
     del environ["LC_DARK_BG"]
-    environ["COLORFGBG"] = "15;0"
-    assert is_dark_color_fg_bg()
     environ["COLORFGBG"] = "0;15"
+    assert is_dark_color_fg_bg()
+    environ["COLORFGBG"] = "15;0"
     assert not is_dark_color_fg_bg()
 
 
