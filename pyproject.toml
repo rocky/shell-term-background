@@ -7,7 +7,7 @@ authors = [
    {name = "Rocky Bernstein"},
    {email = "rb@dustyfeet.com"}
 ]
-name = "term-background"
+name = "term_background"
 description = "Determine if a shell has a light or dark background"
 dependencies = []
 readme = "README.rst"

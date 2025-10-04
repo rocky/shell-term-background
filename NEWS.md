@@ -1,3 +1,11 @@
+1.0.5
+-----
+
+Oct 4, 2025
+
+* Incorporate CLI_THEME and contour terminal
+* Fix COLORFGBG sense in Python script on one place
+
 1.0.4
 -----
 
