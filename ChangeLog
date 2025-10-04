@@ -1,6 +1,27 @@
+2025-10-04  rocky <rocky@gnu.org>
+
+	* README.rst, term-background.bash, term-background.ksh,
+	term-background.zsh, term_background/version.py, test/shunit2,
+	test/test_term_background.bash, test/test_term_background.ksh,
+	test/test_term_background.zsh: Get ready for release 1.0.5
+
+2025-10-04  rocky <rocky@gnu.org>
+
+	* pyproject.toml, setup.cfg, term-background.bash,
+	term-background.ksh, term-background.zsh,
+	term_background/__main__.py, term_background/version.py: Incorporate
+	CLI_THEME and contour terminal
+
+2025-10-03  rocky <rocky@gnu.org>
+
+	* term_background/__main__.py, test/test_term_background.py: I got
+	COLORFGBG sense backwards
+
 2025-09-18  rocky <rocky@gnu.org>
 
-	* term_background/version.py: Get ready for release 1.0.4
+	* ChangeLog, Makefile, NEWS.md, __pkginfo__.py,
+	admin-tools/make-dist-newest.sh, pyproject.toml, setup.py,
+	term_background/version.py: Get ready for release 1.0.4
 
 2025-09-18  R. Bernstein <rocky@users.noreply.github.com>
 
