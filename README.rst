@@ -18,7 +18,7 @@ The heuristics used are to try to query the background color using an `xterm con
 
 Many, but not all, terminals support this query. So as a fallback, we query the environment variable ``COLORFGBG``, and failing this, we use some defaults for some known terminals set from the ``TERM`` environment variable. MacOS has its way of querying characteristics, so we use that too if you are running on that OS.
 
-If `NO_COLOR <https://no-color.org/>`_ is set, this is noted.
+If either `NO_COLOR <https://no-color.org/>`_ or `CLI_THEME <https://wiki.tau.garden/cli-theme/>`_ are set, this is noted.
 
 When we can get pixel intensities of red, blue, and green values of the background, we can use that to determine light and dark based on the combined sum: zero values indicate an absence of a particular color, and we can compare that with the values of the foreground.
 
