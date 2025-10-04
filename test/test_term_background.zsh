@@ -22,5 +22,4 @@ test_osascript_handling()
 }
 
 SHUNIT_PARENT=$0
-cd $fulldir
-. ./shunit2
+. ./test/shunit2

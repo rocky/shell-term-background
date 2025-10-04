@@ -815,7 +815,7 @@ _shunit_generateReport()
       -o ${__shunit_testSuccess} -eq ${SHUNIT_FALSE} ] \
           && _shunit_ok_=${SHUNIT_FALSE}
 
-  if [ -z $__shunit_terse ]  ; then 
+  if [ -z $__shunit_terse ]  ; then
       _shunit_assert_stat=" $__shunit_assertsTotal assert(s): $__shunit_assertsPassed passed, $__shunit_assertsFailed failed, $__shunit_assertsSkipped skipped."
   else
       echo
@@ -983,7 +983,7 @@ _shunit_runTests()
 {
   # execute the oneTimeSetUp function (if it exists)
   oneTimeSetUp
-    
+
   # execute the suite function defined in the parent test script
   # deprecated as of 2.1.0
   suite
