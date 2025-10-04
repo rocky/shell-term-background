@@ -21,6 +21,5 @@ test_osascript_handling()
     assertEquals 1 $is_dark_bg
 }
 
-cd $fulldir
 SHUNIT_PARENT=$0
-. ./shunit2
+. ./test/shunit2
