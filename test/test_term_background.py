@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
+from os import environ
 
 from term_background import (
     set_default_bg,
     is_dark_rgb,
     is_dark_color_fg_bg,
 )
-from os import environ
 
 
 def test_set_default_bg():
