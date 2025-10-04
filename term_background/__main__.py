@@ -23,6 +23,7 @@ that works in POSIX shell.
 """
 
 from os import environ
+import re
 import sys
 
 # from subprocess import check_output, check_call
@@ -154,6 +155,11 @@ def main():
       LC_DARK_BG and COLORFGBG, and check for consistency between the
       settings of these variables.
     """
+    if (cli_theme := environ.get("CLI_THEME", "variable is not set")) != "variable is not set":
+        print(f"CLI_THEME: {cli_theme}")
+    else:
+        print("CLI_THEME is not set.")
+
     lc_dark_bg = environ.get("LC_DARK_BG")
     if lc_dark_bg == "0":
         lc_dark_bg_status = "light"
@@ -161,7 +167,7 @@ def main():
         lc_dark_bg_status = "variable not set"
     else:
         lc_dark_bg_status = "dark"
-    print(f"LC_DARK_BG: {lc_dark_bg} ({lc_dark_bg_status})")
+    print(f"LC_DARK_BG: {lc_dark_bg} ({lc_dark_bg_status}).")
 
     color_fg_bg = environ.get("COLORFGBG")
     if color_fg_bg in LIGHT_COLORFGBG_VALUES:
@@ -172,7 +178,7 @@ def main():
         color_fg_bg_status = "variable not set"
     else:
         color_fg_bg_status = f"?? {color_fg_bg}"
-    print(f"COLORFGBG: {color_fg_bg} ({color_fg_bg_status})")
+    print(f"COLORFGBG: {color_fg_bg} ({color_fg_bg_status}).")
 
     # Check consistency
     if lc_dark_bg_status != color_fg_bg_status and not (
@@ -180,14 +186,33 @@ def main():
         or color_fg_bg_status == "variable not set"
     ):
         print("Mismatched LC_DARK_BG and COLORFGBG; LC_DARK_BG takes precedence")
+        if re.match(cli_theme, "^dark[:]"):
+            cli_theme_dark_status = 1
+        elif re.match(cli_theme, "^light[:]"):
+            cli_theme_dark_status = 0
+        else:
+            cli_theme_dark_status = None
+
+        if cli_theme_dark_status is not None and lc_dark_bg_status != cli_theme_dark_status:
+            print("Mismatched LC_DARK_BG and CLI_THEME; LC_DARK_BG takes precedence")
         sys.exit(1)
     else:
-        print("LC_DARK_BG and COLORFGBG are compatible")
+        print("LC_DARK_BG and COLORFGBG are compatible.")
         no_color = environ.get("NO_COLOR", False)
         if no_color:
             print("NO_COLOR is set to %s. This may take precedence and colors turned off." % no_color)
         else:
             print("NO_COLOR is not set.")
+
+        if re.match(cli_theme, "^dark[:]"):
+            cli_theme_dark_status = 1
+        elif re.match(cli_theme, "^light[:]"):
+            cli_theme_dark_status = 0
+        else:
+            cli_theme_dark_status = None
+
+        if cli_theme_dark_status is not None and lc_dark_bg_status != cli_theme_dark_status:
+            print("Mismatched LC_DARK_BG and CLI_THEME; LC_DARK_BG takes precedence")
 
     sys.exit(0)
 

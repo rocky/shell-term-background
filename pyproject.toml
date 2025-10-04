@@ -51,3 +51,6 @@ dev = [
 
 [tool.setuptools.dynamic]
 version = {attr = "term_background.version.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["term_background*"]  # Include all subpackages
