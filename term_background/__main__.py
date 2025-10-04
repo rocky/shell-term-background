@@ -155,7 +155,8 @@ def main():
       LC_DARK_BG and COLORFGBG, and check for consistency between the
       settings of these variables.
     """
-    if (cli_theme := environ.get("CLI_THEME", "variable is not set")) != "variable is not set":
+    cli_theme = environ.get("CLI_THEME", "variable is not set")
+    if cli_theme != "variable is not set":
         print(f"CLI_THEME: {cli_theme}")
     else:
         print("CLI_THEME is not set.")
