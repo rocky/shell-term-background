@@ -5,12 +5,15 @@ We consult environment variables:
 - LC_DARK_BG
 - COLORFGBG
 - TERM
+- NO_COLOR
 
 If LC_DARK_BG is set and it isn't 0 then we have a dark background
 else a light background.
 
 If LC_DARK_BG is not set but COLORFGBG is set and it is '0;15' then we have a dark background
 and if it is '15;0' then a light background.
+
+If NO_COLOR is set turn of colors.
 
 If none of the above work but TERM is set and the terminal understands
 xterm sequences for retrieving foreground and background, we'll
@@ -22,14 +25,15 @@ See https://github.com/rocky/shell-term-background for code
 that works in POSIX shell.
 """
 
-from os import environ
 import re
 import sys
+from os import environ
+from typing import Optional
 
 # from subprocess import check_output, check_call
 
 
-def set_default_bg():
+def set_default_bg() -> bool:
     """Get background from
     default values based on the TERM environment variable
     """
@@ -40,17 +44,17 @@ def set_default_bg():
     return True
 
 
-def is_dark_rgb(r, g, b):
+def is_dark_rgb(r, g, b) -> bool:
     """Pass as parameters R G B values in hex
     On return, variable is_dark_bg is set
     """
 
-    def scale(v):
+    def scale(v) -> int:
         return v * 16
 
     try:
         midpoint = int(environ.get("TERMINAL_COLOR_MIDPOINT", None))
-    except:
+    except Exception:
         midpoint = None
         pass
     if not midpoint:
@@ -64,7 +68,7 @@ def is_dark_rgb(r, g, b):
         else:
             midpoint = 383
 
-    # Each r,g or b are is scalledmulitplied by 16, e.g.
+    # Each r, g or b are is scale-multiplied by 16, e.g.
     # 0..15 -> 0..240
     if (scale(r) + scale(g) + scale(b)) < midpoint:
         return True
@@ -76,7 +80,7 @@ LIGHT_COLORFGBG_VALUES = ("0;15", "0;default;15")
 DARK_COLORFGBG_VALUES = ("15;0", "15;default;0")
 
 
-def is_dark_color_fg_bg():
+def is_dark_color_fg_bg() -> Optional[bool]:
     """Consult (environment) variables LC_DARK_BG and COLORFGB
     On return, variable is_dark_bg is set"""
     dark_bg = environ.get("LC_DARK_BG", None)
@@ -152,9 +156,16 @@ def is_dark_background():
 
 def main():
     """Show setting for terminal darkness evironment variables
-      LC_DARK_BG and COLORFGBG, and check for consistency between the
-      settings of these variables.
+    LC_DARK_BG and COLORFGBG, and check for consistency between the
+    settings of these variables.
     """
+
+    term = environ.get("TERM", "")
+    if term == "dumb":
+        print(
+            'TERM is set to "dumb", so no ANSI sequences should no be applied.'
+        )
+
     cli_theme = environ.get("CLI_THEME", "variable is not set")
     if cli_theme != "variable is not set":
         print(f"CLI_THEME: {cli_theme}")
@@ -194,14 +205,20 @@ def main():
         else:
             cli_theme_dark_status = None
 
-        if cli_theme_dark_status is not None and lc_dark_bg_status != cli_theme_dark_status:
+        if (
+            cli_theme_dark_status is not None
+            and lc_dark_bg_status != cli_theme_dark_status
+        ):
             print("Mismatched LC_DARK_BG and CLI_THEME; LC_DARK_BG takes precedence")
         sys.exit(1)
     else:
         print("LC_DARK_BG and COLORFGBG are compatible.")
         no_color = environ.get("NO_COLOR", False)
         if no_color:
-            print("NO_COLOR is set to %s. This may take precedence and colors turned off." % no_color)
+            print(
+                "NO_COLOR is set to %s. This may take precedence and colors turned off."
+                % no_color
+            )
         else:
             print("NO_COLOR is not set.")
 
@@ -212,7 +229,10 @@ def main():
         else:
             cli_theme_dark_status = None
 
-        if cli_theme_dark_status is not None and lc_dark_bg_status != cli_theme_dark_status:
+        if (
+            cli_theme_dark_status is not None
+            and lc_dark_bg_status != cli_theme_dark_status
+        ):
             print("Mismatched LC_DARK_BG and CLI_THEME; LC_DARK_BG takes precedence")
 
     sys.exit(0)
