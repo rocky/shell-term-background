@@ -326,10 +326,10 @@ if ((!success)) && (( 3711 < VTE_VERSION )) && [[ -z "$COLORFGBG" ]]; then
     is_dark_rgb "${RGB_fg[@]}" "${RGB_bg[@]}"
     if [[ $is_dark_bg == 1 ]]; then
       # Even though, we're xterm, assist COLORFGBG
-      export COLORFGBG=${WHITE_BACKGROUND_FGBG}
+      export COLORFGBG=${BLACK_BACKGROUND_FGBG}
     else
       # Even though, we're xterm, assist COLORFGBG
-      export COLORFGBG=${BLACK_BACKGROUND_FGBG}
+      export COLORFGBG=${WHITE_BACKGROUND_FGBG}
     fi
   else
     echo "xterm/vte Esc-] OSC has empty string"
