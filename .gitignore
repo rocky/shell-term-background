@@ -2,6 +2,7 @@
 *~
 /.cache
 /.idea
+/.jython_cache
 /.python-version
 /__pkginfo__.pyc
 /__pycache__
