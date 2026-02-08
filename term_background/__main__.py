@@ -28,7 +28,6 @@ that works in POSIX shell.
 import re
 import sys
 from os import environ
-from typing import Optional
 
 # from subprocess import check_output, check_call
 
@@ -80,7 +79,7 @@ LIGHT_COLORFGBG_VALUES = ("0;15", "0;default;15")
 DARK_COLORFGBG_VALUES = ("15;0", "15;default;0")
 
 
-def is_dark_color_fg_bg() -> Optional[bool]:
+def is_dark_color_fg_bg():
     """Consult (environment) variables LC_DARK_BG and COLORFGB
     On return, variable is_dark_bg is set"""
     dark_bg = environ.get("LC_DARK_BG", None)
