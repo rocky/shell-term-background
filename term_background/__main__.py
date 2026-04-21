@@ -48,7 +48,7 @@ def is_dark_rgb(r, g, b):
     On return, variable is_dark_bg is set
     """
 
-    def scale(v) -> int:
+    def scale(v):
         return v * 16
 
     try:
