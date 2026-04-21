@@ -32,7 +32,7 @@ from os import environ
 # from subprocess import check_output, check_call
 
 
-def set_default_bg() -> bool:
+def set_default_bg():
     """Get background from
     default values based on the TERM environment variable
     """
@@ -43,7 +43,7 @@ def set_default_bg() -> bool:
     return True
 
 
-def is_dark_rgb(r, g, b) -> bool:
+def is_dark_rgb(r, g, b):
     """Pass as parameters R G B values in hex
     On return, variable is_dark_bg is set
     """
