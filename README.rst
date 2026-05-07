@@ -28,6 +28,35 @@ Many thanks to Thomas Dickey, Egmont Koblinger, and Gilles, for explanations (an
 
 Of course, the bugs and lacunae in this code are mine.
 
+Installation
+------------
+
+*If you are using Python 3.11 or later*, you can install from PyPI using the name ``term_background``::
+
+    pip install term_background
+
+*For Python releases before 3.11*, do not install using PyPI, but instead install using a file in the `GitHub Releases section <https://github.com/rocky/python-term_background/releases>`_. Older Python used to use `easy_install <https://python101.pythonlibrary.org/chapter29_pip.html#using-easy-install>`_. But this is no longer supported in PyPi or newer Python versions. And vice versa, *poetry* nor *pip*, (the newer ways) are not supported on older Pythons.
+
+If the Python version you are running term_background is between Python 2.4 through 2.7, use a tarball called term_background_24-*x.y.z*.tar.gz.
+
+If the Python version you are running term_background is between Python 3.0 through 3.2, use a tarball called term_background_30-*x.y.z*.tar.gz.
+
+If the Python version you are running term_background is between Python 3.3 through 3.5, use a tarball called term_background_33-*x.y.z*.tar.gz.
+
+If the Python version you are running term_background is between Python 3.6 through 3.11, use a tarball called term_background_36-*x.y.z*.tar.gz.
+
+If the Python version you are running term_background is 3.11 or later, use a file called term_background-*x.y.z*.tar.gz.
+
+You can also try eggs or wheels that have the same version designation, e.g., term_background-*x.y.z*-py39-none-any.whl for a Python 3.9 installation. *However, note that the version without the designation means Python 3.11 or greater*.
+
+Similarly, a tarball with or without the underscore *xx*,  e.g., term_background_36-*x.y.z*.tar.gz. works only from Python 3.11 or greater.
+
+Rationale for using Git Branches
+++++++++++++++++++++++++++++++++
+
+It is currently impossible (if not impractical) to have one Python source code of this complexity and with this many features that can run both Python 2.7 and Python 3.13+. The languages have drifted so much, and packaging is vastly different. In fact, the packaging practice for Python 3.11+ is incompatible with Python 2.7 (and before back to Python 2.4), which favored "easy_install".
+
+
 .. |Pypi Installs| image:: https://pepy.tech/badge/term-background
 .. |Supported Python Versions| image:: https://img.shields.io/pypi/pyversions/term-background.svg
 .. |packagestatus| image:: https://repology.org/badge/vertical-allrepos/python:term-background.svg :target: https://repology.org/project/python:term-background/versions
