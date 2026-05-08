@@ -15,6 +15,7 @@ license = "GPL-3.0-or-later"
 maintainers = [
     {name = "Rocky Bernstein"},
 ]
+requires-python = ">=3.12"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
