@@ -26,7 +26,7 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 
-python_requires = ">=3.3, <3.6"
+python_requires = ">=3.0, <3.3"
 
 def get_srcdir():
     filename = osp.normcase(osp.dirname(osp.abspath(__file__)))
