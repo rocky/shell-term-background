@@ -1,4 +1,4 @@
-|Pypi Installs| |Supported Python Versions|
+|PyPI Installs| |Supported Python Versions|
 
 The Python module contained is part of a broader set of scripts.
 
@@ -35,7 +35,7 @@ Installation
 
     pip install term_background
 
-*For Python releases before 3.11*, do not install using PyPI, but instead install using a file in the `GitHub Releases section <https://github.com/rocky/python-term_background/releases>`_. Older Python used to use `easy_install <https://python101.pythonlibrary.org/chapter29_pip.html#using-easy-install>`_. But this is no longer supported in PyPi or newer Python versions. And vice versa, *poetry* nor *pip*, (the newer ways) are not supported on older Pythons.
+*For Python releases before 3.11*, do not install using PyPI, but instead install using a file in the `GitHub Releases section <https://github.com/rocky/python-term_background/releases>`_. Older Python used to use `easy_install <https://python101.pythonlibrary.org/chapter29_pip.html#using-easy-install>`_. But this is no longer supported in PyPI or newer Python versions. And vice versa, *poetry* nor *pip*, (the newer ways) are not supported on older Pythons.
 
 If the Python version you are running term_background is between Python 2.4 through 2.7, use a tarball called term_background_24-*x.y.z*.tar.gz.
 
@@ -57,6 +57,6 @@ Rationale for using Git Branches
 It is currently impossible (if not impractical) to have one Python source code of this complexity and with this many features that can run both Python 2.7 and Python 3.13+. The languages have drifted so much, and packaging is vastly different. In fact, the packaging practice for Python 3.11+ is incompatible with Python 2.7 (and before back to Python 2.4), which favored "easy_install".
 
 
-.. |Pypi Installs| image:: https://pepy.tech/badge/term-background
+.. |PyPI Installs| image:: https://pepy.tech/badge/term-background
 .. |Supported Python Versions| image:: https://img.shields.io/pypi/pyversions/term-background.svg
 .. |packagestatus| image:: https://repology.org/badge/vertical-allrepos/python:term-background.svg :target: https://repology.org/project/python:term-background/versions
